@@ -1,0 +1,78 @@
+Body {
+	background-color: #A7C14E;
+}
+/*=============================== Navegation Bar Styles	=============================== */
+.nav-decoration{
+	color: #2A760F;
+	height: 30px;
+}
+
+.nav-list {
+	margin-top: 10px;
+	list-style: none;
+}
+
+.nav-list__item {
+ display: inline-block;
+ padding-right: 20px;
+}
+
+.nav-list__item button{
+	padding: 1px;
+	border: none;
+}
+
+		/*======================= Navegation Bar Styles === Images	=================== */
+
+.nav-decoration-logo{
+	height: 43px;
+	width: auto;
+}
+
+.nav-decoration-button-img{
+	height: 15px;
+	width: auto;
+}
+
+
+
+/*=============================== Add Ticket section Styles	=========================== */
+.ticket-box-decoration{
+	background-color:#BB9147;
+}
+
+
+
+
+.test{
+	x:60;
+}
+/*===============================Registred Ticket section Styles	=================== */
+.ticketIn-box-decoration{
+	background-color: #B86B47;
+}
+
+
+.ticketIn-boxItem-decoration{
+/*	width: 75%;*/
+}
+
+.ticketIn-boxItemInfo-decoration{
+	background-color: white;
+	padding-left: 10%;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-left: 4%;
+	margin-right: 4%;
+	border-radius: 16px;
+	border-color: #000000;
+	border-style: solid;
+	border-width: 3px;
+}
+
+#company_style{
+	background-color: #2CC328;
+}
+#name_style{
+	background-color: #FC9666;
+}
