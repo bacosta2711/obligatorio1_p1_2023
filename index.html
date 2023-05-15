@@ -33,29 +33,53 @@
 	<section class="ticket-box-decoration">
 		<h2>Agregar Reclamos</h2></br>
 
+
 		<form>
-			<label for="name" > Nombre <!-- Quizas aca en vez de poner la descrition del att conviene poner un span-->
-				<input  type="text" id="name" placeholder="Tu nombre..."></br>
-			</label>
-			
-			<span>Empresa</span>
-			<select id="company"> 
-				<option value = "Todo Viajes SA">Todo Viajes S.A.</option>	
-				<option value = "Todo Viajes SA">Alfa</option>	
-			</select></br>
+			<table>
+				<tr>
+					<td><span>Nombre</span></td>
+					<td>
+						<label for="name" >  <!-- Quizas aca en vez de poner la descrition del att conviene poner un span-->
+							<input  type="text" id="name" placeholder="Tu nombre..."></br>
+						</label>	
+					</td>
+				</tr>	
 
-			<label for="ticket_name"> Reclamo
-				<input  type="text" id="ticket_name" placeholder="El titulo es..."></br>
-			</label>
+				<tr>
+					<td><span>Empresa</span></td>
+					<td>
+						<select id="company"> 
+							<option value = "Todo Viajes SA">Todo Viajes S.A.</option>	
+							<option value = "Todo Viajes SA">Alfa</option>	
+						</select>	
+					</td> 	
+				</tr>
 
-			<label for="ticket_dsc" > 
-				<textarea  name="ticket_dsc" id="ticket_dsc" placeholder="Y tu reclamo es ..." cols="30" rows="5" ></textarea></br>	
-			</label>
-			
+				<tr>
+					<td><span>Reclamo</span></td>
+					<td>
+						<label for="ticket_name"> 
+							<input  type="text" id="ticket_name" placeholder="El titulo es..."></br>
+						</label>
+					</td> 	
+				</tr>
 
-			<input type="submit" value="Agregar">	
-		</form>
-	</section>
+				<tr>
+					<td></td>
+					<td>
+						<label for="ticket_dsc" > 
+							<textarea  name="ticket_dsc" id="ticket_dsc" placeholder="Y tu reclamo es ..." cols="30" rows="5" ></textarea></br>	
+						</label>
+					</td> 	
+				</tr>	
+
+
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Agregar"></td> 	
+				</tr>	
+			</table>
+		</form>		
 
 	<!-- Section asociado a el sitio para rver reclamos ingresados-->
 
