@@ -68,9 +68,9 @@ Body {
 	border-width: 3px;
 }
 
-#company_style{
+.company_style{
 	background-color: #2CC328;
 }
-#name_style{
+.name_style{
 	background-color: #FC9666;
 }

@@ -4,26 +4,24 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Tus Reclamos</title>
-	<link rel="stylesheet" href="./style.css" />
+	<link rel="stylesheet" href="./style.css">
 </head>	
 <body>
-	<section class="nav-decoration"> <!-- Section asociado a la barra de busqueda: -->
+	<div class="nav-decoration"> <!-- Section asociado a la barra de busqueda: TODO: PReguntar diferencia entre div y section y porque aca si me pedia div -->
 		<nav>
 			<ul class="nav-list">
-				<li class="nav-list__item"><img class="nav-decoration-logo" src="./src/img/logo.png"></li>
+				<li class="nav-list__item"><img alt="logotipo" class="nav-decoration-logo" src="./src/img/logo.png"></li>
 				<li class="nav-list__item"><a href="">Principial</a></li>
 				<li class="nav-list__item"><a href="">Ver Reclamos</a></li>
 				<li class="nav-list__item"><a href="">Estadisticas</a></li>
 				<li class="nav-list__item"><a href="">Agregar Empresa</a></li>
 				<li class="nav-list__item">
-					<label for="search_action">
-						<input type="text" id="search_action"> 
-						<button type="image" ><img class= "nav-decoration-button-img" src="./src/img/search_icon.png" ></button>
-					</label>
+					<input type="text" id="search_action"> 
+					<button><img alt="sear_icon" class= "nav-decoration-button-img" src="./src/img/search_icon.png"></button>
 				</li>
 			</ul>
 		</nav>
-	</section>	
+	</div>	
 
 	<!-- Section asociado a el sitio para la gestion de los reclamos-->
 		<!-- TODO: Agregar partes de Mateo-->
@@ -31,7 +29,7 @@
 	<!-- Section asociado a el sitio para agregar reclamos-->
 
 	<section class="ticket-box-decoration">
-		<h2>Agregar Reclamos</h2></br>
+		<h2>Agregar Reclamos</h2><br>
 
 
 		<form>
@@ -40,7 +38,7 @@
 					<td><span>Nombre</span></td>
 					<td>
 						<label for="name" >  <!-- Quizas aca en vez de poner la descrition del att conviene poner un span-->
-							<input  type="text" id="name" placeholder="Tu nombre..."></br>
+							<input  type="text" id="name" placeholder="Tu nombre..."><br>
 						</label>	
 					</td>
 				</tr>	
@@ -59,7 +57,7 @@
 					<td><span>Reclamo</span></td>
 					<td>
 						<label for="ticket_name"> 
-							<input  type="text" id="ticket_name" placeholder="El titulo es..."></br>
+							<input  type="text" id="ticket_name" placeholder="El titulo es..."><br>
 						</label>
 					</td> 	
 				</tr>
@@ -68,7 +66,7 @@
 					<td></td>
 					<td>
 						<label for="ticket_dsc" > 
-							<textarea  class="ticket_dsc" name="ticket_dsc" id="ticket_dsc" placeholder="Y tu reclamo es ..." cols="30" rows="5" ></textarea></br>	
+							<textarea  class="ticket_dsc" name="ticket_dsc" id="ticket_dsc" placeholder="Y tu reclamo es ..." cols="30" rows="5" ></textarea><br>	
 						</label>
 					</td> 	
 				</tr>	
@@ -80,7 +78,7 @@
 				</tr>	
 			</table>
 		</form>		
-
+	</section>
 	<!-- Section asociado a el sitio para rver reclamos ingresados-->
 
 	<section class="ticketIn-box-decoration">
@@ -89,8 +87,8 @@
 		<div class="ticketIn-boxItem-decoration">
 			<h3>Reclamo No.2</h3>
 			<div class="ticketIn-boxItemInfo-decoration">
-				<p>Anonimo: <span id="name_style">Perdi la valija!</span></p>
-				<p>Empresa: <span id="company_style">TodoViajes S.A.</span></p>
+				<p>Anonimo: <span class="name_style">Perdi la valija!</span></p>
+				<p>Empresa: <span class="company_style">TodoViajes S.A.</span></p>
 				<p>Viaje por su empresa y la valija no llego.</p>
 				<span style="display: inline;">
 					<button type="submit" > A mi tambien me paso!</button> 
@@ -102,8 +100,8 @@
 		<div class="ticketIn-boxItem-decoration">
 			<h3>Reclamo No.1</h3>
 			<div class="ticketIn-boxItemInfo-decoration">
-				<p>Luis Perez: <span id="name_style">Pasaje muy caro</span></p>
-				<p>Empresa: <span id="company_style">TodoViajes S.A.</span></p>
+				<p>Luis Perez: <span class="name_style">Pasaje muy caro</span></p>
+				<p>Empresa: <span class="company_style">TodoViajes S.A.</span></p>
 				<p>El pasaje a BsAs esta muy caro, compare con otras comanniias y el precio de ustedes es mas del doble. Ademas las otras empresas ofrecen catering.</p>
 				<span style="display: inline;"> <!-- TODO: Validar que esto nos dejan hacerlo-->
 					<button type="submit" > A mi tambien me paso!</button> 
