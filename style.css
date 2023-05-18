@@ -74,3 +74,67 @@ Body {
 .name_style{
 	background-color: #FC9666;
 }
+.a1 {
+    background-color:  #FF956E;
+
+
+}
+.reclamo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #A6BC45;
+    width: 6rm;
+    height: 3em;
+    border: solid 2px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: inset 0px -15px 10px rgba(0, 0, 0, 0.2);
+    font-size: 25px;
+    margin-left: auto;
+    margin-right: auto;   
+}
+.a2{
+    background-color: #BD9D5D;
+
+}
+
+.tabla1 {
+    border: 2px solid;
+    background-color: white;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 20%;
+    border-radius: 10px;
+}
+.Mateo{
+    width: 20px;
+    height: 20px;
+}
+.Bruno{
+    width: 20px;
+    height: 20px;
+}
+
+.tableHeadOne,.celdaOne{
+    border: 2px solid;
+    margin-left: auto;
+    margin-right: auto;
+    width: 350px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    
+}
+.tableHeadTwo,.celdaTwo{
+    border: 2px solid;
+    width: 200px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    
+}
+.a3 {
+    background-color: #AFF6A1;
+}
