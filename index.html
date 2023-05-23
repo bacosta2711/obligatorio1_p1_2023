@@ -35,10 +35,10 @@
 		<p>Sitio desarrollado en el curso de Programacion 1 - 1er semestre 2023 - Universidad ORT Uruguay por:
 		</p>
 
-		<img class="Mateo" src="./src/img/mateo.jpg" alt="Mateo Seijo" width="600">
+		<a href="src/img/mateo.jpg"><img class="Mateo" src="./src/img/mateo.jpg" alt="Mateo Seijo" width="600"></a>
 		<span> Mateo Seijo 309095</span><br><br>
-		<img class="Bruno" src="./src/img/bacosta_image.png" alt="Bruno Acosta" width="600">
-		<span> Bruno Acosta 313080</span>
+		<a href="src/img/bacosta_image.png"><img class="Bruno" src="./src/img/bacosta_image.png" alt="Bruno Acosta" width="600"></a>
+		<span> Bruno Acosta 313080</span><br>
 		<button class="reclamo">Agrega tu reclamo aqui</button>
 	</section>
 	<!-- Section asociado a el sitio para agregar reclamos-->
@@ -96,7 +96,7 @@
 			</table>
 		</form>
 	</section>
-	<!-- Section asociado a el sitio para rver reclamos ingresados-->
+	<!-- Section asociado a el sitio para ver reclamos ingresados-->
 
 	<section class="ticketIn-box-decoration">
 		<h2>Reclamos Ingresados (los mas recientes primeros)</h2><br>
@@ -127,7 +127,6 @@
 				</span>
 			</div>
 		</div>
-
 	</section>
 
 	<!-- Section asociado a el sitio para ver estadisticas-->
@@ -137,19 +136,16 @@
 		<h3>Empresas Seleccionadas</h3>
 
 		<div class="buttonRadio">
-			<table class="tableButton">
-				<tr>
-					<td class="buttonCenter"><button>A</button></td>
-					<td class="buttonCenter"><button>T</button></td>
-					<td class="buttonCenter"><button>'</button></td>
-				</tr>
-			</table>
+
+			<button class="buttonTable">A</button>
+			<button class="buttonTable">T</button>
+			<button class="buttonTable">'</button><br><br>
 			<input type="radio" name="orden" id="idRadio"><label for="idRadio">Orden nombre creciente </label>
 			<input type="radio" name="orden" id="idRadio1"><label for="idRadio1">Orden nombre decreciente</label>
 		</div>
-		<p>Empresas que empiezan con T</p>
+		<p class="companyT">Empresas que empiezan con T</p>
 
-		<div class="tabla1">
+		<div class="tableOne">
 			<table>
 				<tr>
 					<th class="tableHeadOne"><B>Nombre</B></th>
