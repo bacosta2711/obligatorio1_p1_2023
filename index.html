@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<meta charset="utf-8">
@@ -9,12 +9,11 @@
 </head>
 
 <body>
-	<div class="nav-decoration">
+	<header class="nav-decoration">
 		<!-- Cambio mateo Section asociado a la barra de busqueda: TODO: PReguntar diferencia entre div y section y porque aca si me pedia div -->
 		<nav>
 			<ul class="nav-list">
-				<li class="nav-list__item"><img alt="logotipo" class="nav-decoration-logo" src="./src/img/logo.png">
-				</li>
+				<li class="nav-list__item_image"><img alt="logotipo" class="nav-decoration-logo" src="./src/img/logo.png"></li>
 				<li class="nav-list__item"><a href="">Principial</a></li>
 				<li class="nav-list__item"><a href="">Ver Reclamos</a></li>
 				<li class="nav-list__item"><a href="">Estadisticas</a></li>
@@ -26,7 +25,7 @@
 				</li>
 			</ul>
 		</nav>
-	</div>
+	</header>
 
 	<!-- Section asociado a el sitio para la gestion de los reclamos-->
 	<section class="claimsManagement">
@@ -35,11 +34,12 @@
 		<p>Sitio desarrollado en el curso de Programacion 1 - 1er semestre 2023 - Universidad ORT Uruguay por:
 		</p>
 
-		<a href="src/img/mateo.jpg"><img class="Mateo" src="./src/img/mateo.jpg" alt="Mateo Seijo" width="600"></a>
+		<a href="src/img/mateo.jpg" target="_blank"><img class="Mateo" src="./src/img/mateo.jpg" alt="Mateo Seijo" width="600"></a>
 		<span> Mateo Seijo 309095</span><br><br>
-		<a href="src/img/bacosta_image.png"><img class="Bruno" src="./src/img/bacosta_image.png" alt="Bruno Acosta" width="600"></a>
+		<a href="src/img/bacosta_image.png" target="_blank"><img class="Bruno" src="./src/img/bacosta_image.png" alt="Bruno Acosta" width="600"></a>
 		<span> Bruno Acosta 313080</span><br>
-		<button class="reclamo">Agrega tu reclamo aqui</button>
+		<button id="asd" class="claim">Agrega tu reclamo aqui</button>
+		<br>
 	</section>
 	<!-- Section asociado a el sitio para agregar reclamos-->
 
@@ -54,7 +54,7 @@
 					<td>
 						<label for="name">
 							<!-- Quizas aca en vez de poner la descrition del att conviene poner un span-->
-							<input type="text" id="name" placeholder="Tu nombre..."><br>
+							<input type="text" maxlength="30" id="name" placeholder="Tu nombre..."><br>
 						</label>
 					</td>
 				</tr>
@@ -73,7 +73,7 @@
 					<td><span>Reclamo</span></td>
 					<td>
 						<label for="ticket_name">
-							<input type="text" id="ticket_name" placeholder="El titulo es..."><br>
+							<input type="text" maxlength="30" id="ticket_name" placeholder="El titulo es..."><br>
 						</label>
 					</td>
 				</tr>
@@ -138,9 +138,9 @@
 		<div class="buttonRadio">
 
 			<button class="buttonTable">A</button>
-			<button class="buttonTable">T</button>
-			<button class="buttonTable">'</button><br><br>
-			<input type="radio" name="orden" id="idRadio"><label for="idRadio">Orden nombre creciente </label>
+			<button class="button_background_green">T</button>
+			<button class="buttonTable">*</button><br><br>
+			<input type="radio" name="orden" checked id="idRadio"><label for="idRadio">Orden nombre creciente</label>
 			<input type="radio" name="orden" id="idRadio1"><label for="idRadio1">Orden nombre decreciente</label>
 		</div>
 		<p class="companyT">Empresas que empiezan con T</p>
@@ -181,10 +181,10 @@
 		<h3>Datos:</h3>
 		<form>
 			<label for="Nombre">Nombre:
-				<input type="text" id="Nombre" name="fname">
+				<input type="text" maxlength="30" id="Nombre" name="fname">
 			</label> <br>
 			<label for="Direccion">Direccion:
-				<input type="text" id="Direccion" name="lname">
+				<input type="text" maxlength="30" id="Direccion" name="lname">
 			</label> <br>
 			<label for="idSelect">Rubro:</label>
 			<select name="SinDatos" id="idSelect">

@@ -1,11 +1,14 @@
 Body {
     background-color: #B0C858;
+    font-family: Arial;
 }
 
 /*=============================== Navegation Bar Styles	=============================== #A7C14E*/
 .nav-decoration {
     color: #2A760F;
     height: 30px;
+    display: flex;
+    align-items: center ;
 }
 
 .nav-list {
@@ -13,9 +16,13 @@ Body {
     list-style: none;
 }
 
+
 .nav-list__item {
     display: inline-block;
-    padding-right: 20px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    float: center;
+    padding-top: 30px;
 }
 
 .nav-list__item button {
@@ -23,6 +30,12 @@ Body {
     border: none;
 }
 
+.nav-list__item_image{
+    float: left;
+    padding-top: 15px;
+    padding-right: 25px;
+
+    }
 /*======================= Navegation Bar Styles === Images	=================== */
 
 .nav-decoration-logo {
@@ -84,7 +97,7 @@ Body {
 
 }
 
-.reclamo {
+.claim {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,9 +109,11 @@ Body {
     border-radius: 30px;
     overflow: hidden;
     box-shadow: inset 0px -35px 10px rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to bottom,#A6BC45  30%,#FF956E 100%);
     font-size: 25px;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .statisticsSite {
@@ -113,6 +128,13 @@ Body {
     margin: 0 auto;
 }
 
+.button_background_green{
+    background-color: limegreen;
+    border : solid;  
+    text-align: center;
+    margin: 0 auto;
+
+}
 
 .buttonTable {
     text-align: center;
