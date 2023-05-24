@@ -1,3 +1,5 @@
+<!-- Bruno Acosta_ 313080 -->
+<!-- Mateo Seijo_ 309095 -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,15 +15,15 @@
 		<!-- Cambio mateo Section asociado a la barra de busqueda: TODO: PReguntar diferencia entre div y section y porque aca si me pedia div -->
 		<nav>
 			<ul class="nav-list">
-				<li class="nav-list__item_image"><img alt="logotipo" class="nav-decoration-logo" src="./img/logo.png"></li>
+				<li class="nav-list__item_image"><img alt="logotipo" class="nav-decoration-logo" src="./img/logo.png">
+				</li>
 				<li class="nav-list__item"><a href="">Principial</a></li>
 				<li class="nav-list__item"><a href="">Ver Reclamos</a></li>
-				<li class="nav-list__item"><a href="">Estadisticas</a></li>
+				<li class="nav-list__item"><a href="">Estadísticas</a></li>
 				<li class="nav-list__item"><a href="">Agregar Empresa</a></li>
 				<li class="nav-list__item">
 					<input type="text" id="search_action">
-					<button><img alt="sear_icon" class="nav-decoration-button-img"
-							src="./img/search_icon.png"></button>
+					<button><img alt="sear_icon" class="nav-decoration-button-img" src="./img/search_icon.png"></button>
 				</li>
 			</ul>
 		</nav>
@@ -31,14 +33,16 @@
 	<section class="claimsManagement">
 		<h2> Sitio para la gestión de reclamos</h2>
 		<h3>Este sitio permite ingresar reclamos o quejas y realizar diversas consultas</h3>
-		<p>Sitio desarrollado en el curso de Programacion 1 - 1er semestre 2023 - Universidad ORT Uruguay por:
+		<p>Sitio desarrollado en el curso de Programación 1 - 1er semestre 2023 - Universidad ORT Uruguay por:
 		</p>
 
-		<a href="./img/mateo.jpg" target="_blank"><img class="Mateo" src="./img/mateo.jpg" alt="Mateo Seijo" width="600"></a>
+		<a href="./img/mateo.jpg" target="_blank"><img class="Mateo" src="./img/mateo.jpg" alt="Mateo Seijo"
+				width="600"></a>
 		<span> Mateo Seijo 309095</span><br><br>
-		<a href="./img/bacosta_image.png" target="_blank"><img class="Bruno" src="./img/bacosta_image.png" alt="Bruno Acosta" width="600"></a>
+		<a href="./img/bacosta_image.png" target="_blank"><img class="Bruno" src="./img/bacosta_image.png"
+				alt="Bruno Acosta" width="600"></a>
 		<span> Bruno Acosta 313080</span><br>
-		<button id="asd" class="claim">Agrega tu reclamo aqui</button>
+		<button id="asd" class="claim">Agrega tu reclamo aquí</button>
 		<br>
 	</section>
 	<!-- Section asociado a el sitio para agregar reclamos-->
@@ -99,16 +103,16 @@
 	<!-- Section asociado a el sitio para ver reclamos ingresados-->
 
 	<section class="ticketIn-box-decoration">
-		<h2>Reclamos Ingresados (los mas recientes primeros)</h2><br>
+		<h2>Reclamos Ingresados (los más recientes primeros)</h2><br>
 
 		<div class="ticketIn-boxItem-decoration">
 			<h3>Reclamo No.2</h3>
 			<div class="ticketIn-boxItemInfo-decoration">
-				<p>Anonimo: <span class="name_style">Perdi la valija!</span></p>
+				<p>Anonimo: <span class="name_style">Perdí la valija!</span></p>
 				<p>Empresa: <span class="company_style">TodoViajes S.A.</span></p>
-				<p>Viaje por su empresa y la valija no llego.</p>
+				<p>Viajé por su empresa y la valija no llegó.</p>
 				<span style="display: inline;">
-					<button type="submit"> A mi tambien me paso!</button>
+					<button type="submit"> A mí también me pasó!</button>
 					<a>Contador: <span>3</span></a>
 				</span>
 			</div>
@@ -119,8 +123,8 @@
 			<div class="ticketIn-boxItemInfo-decoration">
 				<p>Luis Perez: <span class="name_style">Pasaje muy caro</span></p>
 				<p>Empresa: <span class="company_style">TodoViajes S.A.</span></p>
-				<p>El pasaje a BsAs esta muy caro, compare con otras comanniias y el precio de ustedes es mas del doble.
-					Ademas las otras empresas ofrecen catering.</p>
+				<p>El pasaje a BsAs está muy caro, comparé con otras compañías y el precio de ustedes es más del doble.
+					Además las otras empresas ofrecen catering.</p>
 				<span style="display: inline;"> <!-- TODO: Validar que esto nos dejan hacerlo-->
 					<button type="submit"> A mi tambien me paso!</button>
 					<a>Contador: <span>1</span></a>
@@ -131,7 +135,7 @@
 
 	<!-- Section asociado a el sitio para ver estadisticas-->
 	<section class="statisticsSite">
-		<h2>Estadisticas</h2>
+		<h2>Estadísticas</h2>
 
 		<h3>Empresas Seleccionadas</h3>
 
@@ -161,14 +165,14 @@
 				</tr>
 			</table>
 		</div>
-		<h3> Informacion General</h3>
+		<h3> Información General</h3>
 		<p>El promedio de las cantidades considerando todos los reclamos de todas las empresas es :4</p>
 		<p>Total de empresas registradas: 2</p>
 		<h3>Empresas sin reclamos</h3>
 		<ul>
 			<li> Alfa (18 de Julio 12345) Rubro: Muebles</li>
 		</ul>
-		<h3>Rubros con maxima cantidad de reclamos</h3>
+		<h3>Rubros con máxima cantidad de reclamos</h3>
 		<ul>
 			<li>Viajes: cantidad 4</li>
 		</ul>
@@ -180,20 +184,31 @@
 		<h2>Agregar empresa</h2>
 		<h3>Datos:</h3>
 		<form>
-			<label for="Nombre">Nombre:
-				<input type="text" maxlength="30" id="Nombre" name="fname">
-			</label> <br>
-			<label for="Direccion">Direccion:
-				<input type="text" maxlength="30" id="Direccion" name="lname">
-			</label> <br>
-			<label for="idSelect">Rubro:</label>
-			<select name="SinDatos" id="idSelect">
-				<option value="Sin datos">Sin datos</option>
-			</select>
-			<br>
-			<input type="submit" value="Agregar">
+			<table>
+				<tr>
+					<td><label for="Nombre">Nombre:</label></td>
+					<td><input type="text" maxlength="30" id="Nombre" name="fname"></td>
 
+				</tr>
+				<tr>
+
+					<td><label for="Direccion">Dirección:</label></td>
+					<td><input type="text" maxlength="30" id="Direccion" name="lname"></td>
+				</tr>
+
+				<tr>
+					<td><label for="idSelect">Rubro:</label></td>
+					<td><select name="SinDatos" id="idSelect">
+							<option value="Sin datos">Sin datos</option>
+						</select></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" value="Agregar"></td>
+				</tr>
+			</table>
 		</form>
+
 
 	</section>
 </body>
