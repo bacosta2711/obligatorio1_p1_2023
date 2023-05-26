@@ -23,8 +23,7 @@
 				<li class="nav-list__item"><a href="">Agregar Empresa</a></li>
 				<li class="nav-list__item">
 					<input type="text" id="search_action">
-					<button><img type="button" alt="sear_icon" class="nav-decoration-button-img"
-							src="./img/search_icon.png"></button>
+					<button><img alt="sear_icon" class="nav-decoration-button-img" src="./img/search_icon.png"></button>
 				</li>
 			</ul>
 		</nav>
@@ -33,18 +32,20 @@
 	<!-- Section asociado a el sitio para la gestion de los reclamos-->
 	<section class="claimsManagement">
 		<h2> Sitio para la gestión de reclamos</h2>
-		<h3>Este sitio permite ingresar reclamos o quejas y realizar diversas consultas</h3>
-		<p>Sitio desarrollado en el curso de Programación 1 - 1er semestre 2023 - Universidad ORT Uruguay por:
-		</p>
+		<article>
+			<h3>Este sitio permite ingresar reclamos o quejas y realizar diversas consultas</h3>
+			<p>Sitio desarrollado en el curso de Programación 1 - 1er semestre 2023 - Universidad ORT Uruguay por:
+			</p>
 
-		<a href="./img/mateo.jpg" target="_blank"><img class="Mateo" src="./img/mateo.jpg" alt="Mateo Seijo"
-				width="600"></a>
-		<span> Mateo Seijo 309095</span><br><br>
-		<a href="./img/bacosta_image.png" target="_blank"><img class="Bruno" src="./img/bacosta_image.png"
-				alt="Bruno Acosta" width="600"></a>
-		<span> Bruno Acosta 313080</span><br>
-		<button class="claim">Agrega tu reclamo aquí</button>
-		<br>
+			<a href="./img/mateo.jpg" target="_blank"><img class="Mateo" src="./img/mateo.jpg" alt="Mateo Seijo"
+					width="600"></a>
+			<span> Mateo Seijo 309095</span><br><br>
+			<a href="./img/bacosta_image.png" target="_blank"><img class="Bruno" src="./img/bacosta_image.png"
+					alt="Bruno Acosta" width="600"></a>
+			<span> Bruno Acosta 313080</span><br>
+			<button class="claim">Agrega tu reclamo aquí</button>
+			<br>
+		</article>
 	</section>
 	<!-- Section asociado a el sitio para agregar reclamos-->
 
@@ -59,7 +60,7 @@
 					<td>
 						<label for="name">
 							<!-- Quizas aca en vez de poner la descrition del att conviene poner un span-->
-							<input type="text" maxlength="30" id="name" placeholder="Tu nombre..."><br>
+							<input type="text" required maxlength="30" id="name" placeholder="Tu nombre..."><br>
 						</label>
 					</td>
 				</tr>
@@ -78,7 +79,7 @@
 					<td><span>Reclamo</span></td>
 					<td>
 						<label for="ticket_name">
-							<input type="text" maxlength="30" id="ticket_name" placeholder="El titulo es..."><br>
+							<input type="text" required maxlength="30" id="ticket_name" placeholder="El titulo es..."><br>
 						</label>
 					</td>
 				</tr>
@@ -87,7 +88,7 @@
 					<td></td>
 					<td>
 						<label for="ticket_dsc">
-							<textarea class="ticket_dsc" name="ticket_dsc" id="ticket_dsc"
+							<textarea class="ticket_dsc" required name="ticket_dsc" id="ticket_dsc"
 								placeholder="Y tu reclamo es ..." cols="30" rows="5"></textarea><br>
 						</label>
 					</td>
@@ -106,7 +107,7 @@
 	<section class="ticketIn-box-decoration">
 		<h2>Reclamos Ingresados (los más recientes primeros)</h2><br>
 
-		<div class="ticketIn-boxItem-decoration">
+		<article class="ticketIn-boxItem-decoration">
 			<h3>Reclamo No.2</h3>
 			<div class="ticketIn-boxItemInfo-decoration">
 				<p>Anonimo: <span class="name_style">Perdí la valija!</span></p>
@@ -117,9 +118,9 @@
 					<a>Contador: <span>3</span></a>
 				</span>
 			</div>
-		</div>
+		</article>
 
-		<div class="ticketIn-boxItem-decoration">
+		<article class="ticketIn-boxItem-decoration">
 			<h3>Reclamo No.1</h3>
 			<div class="ticketIn-boxItemInfo-decoration">
 				<p>Luis Perez: <span class="name_style">Pasaje muy caro</span></p>
@@ -131,7 +132,7 @@
 					<a>Contador: <span>1</span></a>
 				</span>
 			</div>
-		</div>
+		</article>
 	</section>
 
 	<!-- Section asociado a el sitio para ver estadisticas-->
@@ -150,8 +151,8 @@
 		</div>
 		<p class="companyT">Empresas que empiezan con T</p>
 
-		<div class="tableOne">
-			<table>
+
+			<table class="tableOne">
 				<tr>
 					<th class="tableHeadOne"><B>Nombre</B></th>
 					<th class="tableHeadOne"><B>Direccion</B></th>
@@ -165,7 +166,7 @@
 					<td class="celdaTwo">4</td>
 				</tr>
 			</table>
-		</div>
+
 		<h3> Información General</h3>
 		<p>El promedio de las cantidades considerando todos los reclamos de todas las empresas es :4</p>
 		<p>Total de empresas registradas: 2</p>
@@ -188,13 +189,13 @@
 			<table>
 				<tr>
 					<td><label for="Nombre">Nombre:</label></td>
-					<td><input type="text" maxlength="30" id="Nombre" name="fname"></td>
+					<td><input type="text" required maxlength="30" id="Nombre" name="fname"></td>
 
 				</tr>
 				<tr>
 
 					<td><label for="Direccion">Dirección:</label></td>
-					<td><input type="text" maxlength="30" id="Direccion" name="lname"></td>
+					<td><input type="text" required maxlength="30" id="Direccion" name="lname"></td>
 				</tr>
 
 				<tr>
