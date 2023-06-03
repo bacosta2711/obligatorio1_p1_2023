@@ -8,19 +8,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Tus Reclamos</title>
 	<link rel="stylesheet" href="./css/estilos.css">
+	<script src="./js/functions.js"></script>
 </head>
-
 <body>
 	<header class="nav-decoration">
-
 		<nav>
 			<ul class="nav-list">
-				<li class="nav-list__item_image"><img alt="logotipo" class="nav-decoration-logo" src="./img/logo.png">
-				</li>
-				<li class="nav-list__item"><a href="#claimsManagement">Principial</a></li>
-				<li class="nav-list__item"><a href="#ticketIn-box-decoration">Ver Reclamos</a></li>
-				<li class="nav-list__item"><a href="#statisticsSite">Estadísticas</a></li>
-				<li class="nav-list__item"><a href="#addCompany">Agregar Empresa</a></li>
+				<li class="nav-list__item_image"><img alt="logotipo" class="nav-decoration-logo" src="./img/logo.png"></li>
+				<li id="goToMainPage" class="nav-list__item"><a href="#claimsManagement">Principial</a></li>
+				<li id="goToViewTicket" class="nav-list__item"><a href="#ticketIn-box-decoration">Ver Reclamos</a></li>
+				<li id="goToStats" class="nav-list__item"><a href="#statisticsSite">Estadísticas</a></li>
+				<li id="goToAddCompany" class="nav-list__item"><a href="#addCompany">Agregar Empresa</a></li>
 				<li class="nav-list__item">
 					<input type="text" id="search_action">
 					<button><img alt="sear_icon" class="nav-decoration-button-img" src="./img/search_icon.png"></button>
@@ -50,7 +48,7 @@
 	<!-- Section asociado a el sitio para agregar reclamos-->
 
 	<section id="ticket-box-decoration" class="ticket-box-decoration">
-		<h2>Agregar Reclamos</h2>
+		<h2>Agregar Reclamo</h2>
 
 
 		<form>

@@ -1,3 +1,5 @@
+/*<!-- Bruno Acosta_ 313080 -->
+<!-- Mateo Seijo_ 309095 -->*/
 Body {
     background-color: #B0C858;
     font-family: Arial;
@@ -53,6 +55,9 @@ Body {
 /*=============================== Add Ticket section Styles	=========================== */
 .ticket-box-decoration {
     background-color: #BB9147;
+    margin-left: -5px;
+    margin-right: -10px;
+    margin-top: -20px;
 }
 
 .ticket_dsc {
@@ -63,6 +68,8 @@ Body {
 /*===============================Registred Ticket section Styles	=================== */
 .ticketIn-box-decoration {
     background-color: #B86B47;
+    margin-right: -10px;
+    margin-left: -5px;
 }
 
 
@@ -93,7 +100,8 @@ Body {
 
 .claimsManagement {
     background-color: #FF956E;
-    
+    margin-right: -10px;
+    margin-left: -5px;
 
 }
 
@@ -118,7 +126,7 @@ Body {
 
 .statisticsSite {
     background-color: #BD9D5D;
-    
+    margin-left: -5px;
 }
 
 
@@ -189,4 +197,6 @@ Body {
 
 .addCompany {
     background-color: #AFF6A1;
+    margin-left: -5px;
+    margin-bottom: -5px;
 }
