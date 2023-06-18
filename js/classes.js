@@ -16,3 +16,17 @@ class Company{
     this.companyCategory = companyCategory;
   }
 }
+
+class System{
+  constructor(systemCompanies, systemClaims, systemStudient){
+    this.systemStudient = systemStudient;
+    this.systemClaims = systemClaims;
+    this.systemCompanies = systemCompanies;
+  }
+}
+
+class Studient(){
+  constructor(){
+
+  }
+}
