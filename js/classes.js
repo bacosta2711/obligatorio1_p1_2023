@@ -6,6 +6,8 @@ class Claim {
     this.claimDescription = claimDescription;
     this.claimSubscribers = 1;
   }
+
+  
 }
 
 class Company{
@@ -18,11 +20,25 @@ class Company{
 }
 
 class System{
-  constructor(systemCompanies, systemClaims, systemStudient){
-    this.systemStudient = systemStudient;
-    this.systemClaims = systemClaims;
-    this.systemCompanies = systemCompanies;
+  constructor(){
+    this.systemStudients = [];
+    this.systemClaims = [];
+    this.systemCompanies = [];
   }
+
+  addclaim(claim){
+    this.systemClaims.push(claim);
+  }
+
+  addCompany(company){
+    this.systemCompanies.push(company);
+  }
+
+  addStudient(studient){
+    this.systemStudients.push(studient);
+  }
+
+
 }
 
 class Studient(){
