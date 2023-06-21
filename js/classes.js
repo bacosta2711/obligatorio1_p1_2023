@@ -1,13 +1,13 @@
 class Claim {
-  constructor(claimId, claimPerson, claimTitle, claimDescription){
+  constructor(claimId, claimPerson, claimTitle, claimDescription, claimCompany){
     this.claimId = claimId;
     this.claimPerson = claimPerson;
     this.claimTitle = claimTitle;
+    this.claimCompany = claimCompany;
     this.claimDescription = claimDescription;
     this.claimSubscribers = 1;
   }
 
-  
 }
 
 class Company{
@@ -27,7 +27,7 @@ class System{
     this.systemLetter='';
   }
 
-  addclaim(claim){
+  addClaim(claim){
     this.systemClaims.push(claim);
   }
 
@@ -41,9 +41,3 @@ class System{
 
 
 }
-/*
-class Studient(){
-  constructor(){
-
-  }
-}*/
