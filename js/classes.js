@@ -24,6 +24,7 @@ class System{
     this.systemStudients = [];
     this.systemClaims = [];
     this.systemCompanies = [];
+    this.systemLetter='';
   }
 
   addClaim(claim){
@@ -40,9 +41,3 @@ class System{
 
 
 }
-
-/*class Studient(){
-  constructor(){
-
-  }
-}*/

@@ -6,7 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Tus Reclamos</title>
 	<link rel="stylesheet" href="./css/estilos.css">
-	<script src="./js/classes.js"></script>
+
+	<script src='./js/classes.js'></script>
+
 	<script src="./js/functions.js"></script>
 
 </head>
@@ -153,6 +155,7 @@
 			<button class="buttonTable">A</button>
 			<button class="button_background_green">T</button>
 			<button class="buttonTable">*</button><br><br>
+			
 			<input type="radio" name="orden" checked id="idRadio"><label for="idRadio">Orden nombre creciente</label>
 			<input type="radio" name="orden" id="idRadio1"><label for="idRadio1">Orden nombre decreciente</label>
 		</div>
@@ -192,7 +195,7 @@
 	<section id="addCompany" class="addCompany">
 		<h2>Agregar empresa</h2>
 		<h3>Datos:</h3>
-		<form>
+		<form id='addCompany_fm'>
 			<table>
 				<tr>
 					<td><label for="Nombre">Nombre:</label></td>
@@ -208,12 +211,17 @@
 				<tr>
 					<td><label for="idSelect">Rubro:</label></td>
 					<td><select name="SinDatos" id="idSelect">
-							<option value="Sin datos">Sin datos</option>
+							<option value="Viajes" selected>Viajes</option>
+							<option value="Restaurantes">Restaurantes</option>
+							<option value="Muebles">Muebles</option>
+							<option value="Autos">Autos</option>
+							<option value="Servicios">Servicios</option>
+							<option value="General">General</option>
 						</select></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><button type="button">Agregar</button></td>
+					<td><button id='addCompany_btn' type="button">Agregar</button></td>
 				</tr>
 			</table>
 		</form>
