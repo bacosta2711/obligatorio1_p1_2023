@@ -298,11 +298,11 @@ function sendClaim() {
 
 function claimsGeneretor() {
 
-	for (let i = 0; i < system.systemClaims.length; i++) {
+	for (let i = system.systemClaims.length-1; i>0; i--) {
 		let articleTitle = system.systemClaims[i].claimTitle;
 		let articleDescription = system.systemClaims[i].claimDescription;
 		let articlePerson = system.systemClaims[i].claimPerson;
-		let articleId = "RECLAMO No." + parseInt(i)+1;
+		let articleId = "RECLAMO No."+i;
 		let articleSubscribers = system.systemClaims[i].claimSubscribers;
 
 		let divCont = document.getElementById("claimsConteiner");
@@ -349,11 +349,9 @@ function claimsGeneretor() {
 		buttonOne.textContent = "A mí también me pasó!";
 		span3.appendChild(buttonOne);
 
-
 		let counter = document.createElement('a');
 		counter.textContent = "Contador";
 		
-
 		let span4 = document.createElement('span');
 		span4.textContent = articleSubscribers;
 		counter.appendChild(span4);
