@@ -364,5 +364,5 @@ function getCategories(){
 	return categories = ["Viajes","Restaurantes","Muebles","Autos","Servicios","General"]
 }
 
-}
+
 
