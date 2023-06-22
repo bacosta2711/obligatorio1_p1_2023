@@ -56,6 +56,7 @@ function goToAddCompany_nav() {
 
 function goToAddClaim_btn() {
 	goTo("ticket-box-decoration");
+	companyComb();
 }
 
 //------------------------------------ Stats function declaration
@@ -280,7 +281,7 @@ function sendClaim() {
 	newClaim.claimPerson = document.getElementById("claimantName").value;
 	newClaim.claimTitle = document.getElementById("ticket_name").value;
 	newClaim.claimDescription = document.getElementById("ticket_dsc").value;
-	newClaim.claimCompany = document.getElementById('')
+	newClaim.claimCompany = "";
 	system.addClaim(newClaim);
 }
 
@@ -296,6 +297,12 @@ function sendClaim() {
 	)
 }*/
 
+function companiesGridClaims(){
+
+	for (let i = 0; i < system.systemCompanies; i++){
+		let companyNameOption = system.systemCompanies[i].companyName;
+	}
+}
 function claimsGeneretor() {
 
 	for (let i = system.systemClaims.length-1; i>0; i--) {
@@ -329,12 +336,13 @@ function claimsGeneretor() {
 		paragraph.appendChild(span);
 
 		let paragraph2 = document.createElement('p');
-		paragraph2.textContent = "Empresa";
+		paragraph2.textContent = "Empresa: ";
 		divClaim.appendChild(paragraph2);
 
+		let selectElement = document.getElementById('company');
 		let span2 = document.createElement('span');
 		span2.classList.add('company_style');
-		span2.textContent = "";
+		span2.textContent = selectElement.value;
 		paragraph2.appendChild(span2);
 
 		let paragraph3 = document.createElement('p');
@@ -358,6 +366,19 @@ function claimsGeneretor() {
 	}
 }
 
+function companyComb(){
+	let selectConteiner = document.getElementById('company');
+	
+	for (let i = 0; i< system.systemCompanies.length; i++){
+
+		let companyOption = system.systemCompanies[i].companyName;
+		let optionComp = document.createElement('option');
+		optionComp.textContent = companyOption;
+		optionComp.id = 'option' + i; ;
+		selectConteiner.appendChild(optionComp);
+
+	}
+}
 function getCategories(){
 	return categories = ["Viajes","Restaurantes","Muebles","Autos","Servicios","General"]
 }
