@@ -60,7 +60,6 @@ function goToAddClaim_btn() {
 }
 
 //------------------------------------ Stats function declaration
-
 function getQtyMaxCategory(){
 	let categories = getCategories();
 	let qtty =  0
@@ -144,32 +143,87 @@ function areClaims(){
 	return res;
 }
 
-function setCompaniesFistLeter(){
+function getQtyFromCompany(companyId){
+	let qtty =0;
+	for (let i=0;system.systemClaims.length;i++){
+		if(system.systemClaims[i].claimCompany.companyId=companyId){
+			qtty+=system.systemClaims[i].claimSubscribers;
+		}
+	}
+	console.log('la cantidad es:'+qtty);
+	return qtty;
+}
+
+function setRowsFromCompanies(companies){
+	let tableConteiner = document.getElementById('tableOne');
+	
+	for(let i=0;i<companies.length;i++){
+
+		let row = document.createElement('tr');
+
+		let itemToAdd_name = document.createElement('td');
+		itemToAdd_name.classList.add('celdaOne');
+		itemToAdd_name.textContent = companies[i].companyName;
+		row.appendChild(itemToAdd_name);
+
+		let itemToAdd_adddress = document.createElement('td');
+		itemToAdd_adddress.classList.add('celdaOne');
+		itemToAdd_adddress.textContent = companies[i].companyAddress;
+		row.appendChild(itemToAdd_adddress);
+
+
+		let itemToAdd_category = document.createElement('td');
+		itemToAdd_category.classList.add('celdaTwo');
+		itemToAdd_category.textContent = companies[i].companyCategory;
+		row.appendChild(itemToAdd_category);
+
+		let itemToAdd_qtty = document.createElement('td');
+		itemToAdd_qtty.classList.add('celdaTwo');
+		itemToAdd_qtty.textContent = getQtyFromCompany(companies[i].companyId);
+		row.appendChild(itemToAdd_qtty);
+
+		tableConteiner.appendChild(row);
+	}
+
+}
+
+
+
+
+function setButtonsFromCompaniesFistLeter(){
+	let divConteiner = document.getElementById('buttonRadio_div');
+	let buttonall = document.getElementById('allLetterSelected');
 	getCompaniesFistLeter();
-	for(let i =0;i<firstLetterCompanies.length;i++){
-		let button = documentCreateElement('button');
-		button.textContent = firstLetterCompanies[i];
-		button.classList.add('buttonTable');
-		button.addEventListener('click', function(){system.systemLetter=letter;})
+	for(let i =0;i<system.systemfirstLetterCompanies.length;i++){
+		let button = document.createElement('button');
+		button.textContent = system.systemfirstLetterCompanies[i];
+		button.classList.add('buttonTable');	
+		button.addEventListener('click', function(){system.systemLetter=syste.systemfirstLetterCompanies[i];})
+		divconteiner.inertBefore(button,buttonall);
 	}
 		
 
 }
 
 function getCompaniesFistLeter(){
-	var firstLetterCompanies=[];
+	system.systemfirstLetterCompanies=[];
 	for(let i=0;i<system.systemCompanies.length;i++){
+		console.log('Esto es:'+system.systemCompanies[i].companyName.charAt(0));
 		let resAux=letterInCompaniesFirstLEtter(system.systemCompanies[i].companyName.charAt(0));
+		console.log('Esto2 es:'+resAux);
 		if(!resAux){
-			firstLetterCompanies.puush(system.systemCompanies[i].comanyName.charAt(0));
+			console.log('la letra es :'+letter);
+			let letter = system.systemCompanies[i].comanyName.charAt(0);
+			console.log('la letra es :'+letter);
+			system.systemfirstLetterCompanies.push();
 		}
 	}
 }
 
 function letterInCompaniesFirstLEtter(letter){
 	let res = false;
-	for(let i =0;i<firstLetterCompanies.length;i++){
-		if(firstLetterCompanies[i].toUpperCase===letter.toUpperCase){
+	for(let i =0;i<system.systemfirstLetterCompanies.length;i++){
+		if(system.systemfirstLetterCompanies[i].toUpperCase()===letter.toUpperCase()){
 			res = true;
 		}
 	}
@@ -382,8 +436,10 @@ function companyComb(){
 		optionComp.id = 'option' + i; ;
 		selectConteiner.appendChild(optionComp);
 
+
 	}
 }
 function getCategories(){
 	return categories = ["Viajes","Restaurantes","Muebles","Autos","Servicios","General"]
 }
+

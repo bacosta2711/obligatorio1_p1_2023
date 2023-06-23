@@ -25,6 +25,7 @@ class System{
     this.systemClaims = [];
     this.systemCompanies = [];
     this.systemLetter='';
+    this.systemfirstLetterCompanies=[];
   }
 
   addClaim(claim){
