@@ -56,6 +56,7 @@ function goToAddCompany_nav() {
 
 function goToAddClaim_btn() {
 	goTo("ticket-box-decoration");
+	companyComb();
 }
 
 //------------------------------------ Stats function declaration
@@ -280,8 +281,10 @@ function sendClaim() {
 	newClaim.claimPerson = document.getElementById("claimantName").value;
 	newClaim.claimTitle = document.getElementById("ticket_name").value;
 	newClaim.claimDescription = document.getElementById("ticket_dsc").value;
-	newClaim.claimCompany = document.getElementById('')
+	newClaim.claimCompany = system.systemCompanies[document.getElementById('company').selectedIndex];
 	system.addClaim(newClaim);
+    let formClaim = document.getElementById('addClaimForm');
+	formClaim.reset();
 }
 
 /*function sortUpward() {
@@ -296,17 +299,25 @@ function sendClaim() {
 	)
 }*/
 
-function claimsGeneretor() {
+/* function companiesGridClaims(){
 
-	for (let i = 0; i < system.systemClaims.length; i++) {
+	for (let i = 0; i < system.systemCompanies; i++){
+		let companyNameOption = system.systemCompanies[i].companyName;
+	}
+}
+*/
+function claimsGeneretor() {
+	let divCont = document.getElementById("claimsConteiner");
+	divCont.innerHTML = "";
+	for (let i = system.systemClaims.length-1; i>=0; i--) {
 		let articleTitle = system.systemClaims[i].claimTitle;
 		let articleDescription = system.systemClaims[i].claimDescription;
 		let articlePerson = system.systemClaims[i].claimPerson;
-		let articleId = "RECLAMO No." + parseInt(i)+1;
+		let articleId = "RECLAMO No."+parseInt(i+1);
 		let articleSubscribers = system.systemClaims[i].claimSubscribers;
+		let articleCompany = system.systemClaims[i].claimCompany;
 
-		let divCont = document.getElementById("claimsConteiner");
-
+		
 		let articlePag = document.createElement('article');
 		articlePag.classList.add('ticketIn-boxItem-decoration');
 		divCont.appendChild(articlePag);
@@ -329,12 +340,13 @@ function claimsGeneretor() {
 		paragraph.appendChild(span);
 
 		let paragraph2 = document.createElement('p');
-		paragraph2.textContent = "Empresa";
+		paragraph2.textContent = "Empresa: ";
 		divClaim.appendChild(paragraph2);
 
+		//let selectElement = document.getElementById('company');
 		let span2 = document.createElement('span');
 		span2.classList.add('company_style');
-		span2.textContent = "";
+		span2.textContent = articleCompany.companyName;
 		paragraph2.appendChild(span2);
 
 		let paragraph3 = document.createElement('p');
@@ -349,20 +361,29 @@ function claimsGeneretor() {
 		buttonOne.textContent = "A mí también me pasó!";
 		span3.appendChild(buttonOne);
 
-
 		let counter = document.createElement('a');
 		counter.textContent = "Contador";
 		
-
 		let span4 = document.createElement('span');
 		span4.textContent = articleSubscribers;
 		counter.appendChild(span4);
 	}
 }
 
+function companyComb(){
+	
+	let selectConteiner = document.getElementById('company');
+	selectConteiner.innerHTML = "";
+	for (let i = 0; i< system.systemCompanies.length; i++){
+	
+		let companyOption = system.systemCompanies[i].companyName;
+		let optionComp = document.createElement('option');
+		optionComp.textContent = companyOption;
+		optionComp.id = 'option' + i; ;
+		selectConteiner.appendChild(optionComp);
+
+	}
+}
 function getCategories(){
 	return categories = ["Viajes","Restaurantes","Muebles","Autos","Servicios","General"]
 }
-
-}
-
