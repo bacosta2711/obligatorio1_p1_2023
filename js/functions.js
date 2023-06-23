@@ -281,8 +281,10 @@ function sendClaim() {
 	newClaim.claimPerson = document.getElementById("claimantName").value;
 	newClaim.claimTitle = document.getElementById("ticket_name").value;
 	newClaim.claimDescription = document.getElementById("ticket_dsc").value;
-	newClaim.claimCompany = "";
+	newClaim.claimCompany = system.systemCompanies[document.getElementById('company').selectedIndex];
 	system.addClaim(newClaim);
+    let formClaim = document.getElementById('addClaimForm');
+	formClaim.reset();
 }
 
 /*function sortUpward() {
@@ -297,23 +299,25 @@ function sendClaim() {
 	)
 }*/
 
-function companiesGridClaims(){
+/* function companiesGridClaims(){
 
 	for (let i = 0; i < system.systemCompanies; i++){
 		let companyNameOption = system.systemCompanies[i].companyName;
 	}
 }
+*/
 function claimsGeneretor() {
-
-	for (let i = system.systemClaims.length-1; i>0; i--) {
+	let divCont = document.getElementById("claimsConteiner");
+	divCont.innerHTML = "";
+	for (let i = system.systemClaims.length-1; i>=0; i--) {
 		let articleTitle = system.systemClaims[i].claimTitle;
 		let articleDescription = system.systemClaims[i].claimDescription;
 		let articlePerson = system.systemClaims[i].claimPerson;
-		let articleId = "RECLAMO No."+i;
+		let articleId = "RECLAMO No."+parseInt(i+1);
 		let articleSubscribers = system.systemClaims[i].claimSubscribers;
+		let articleCompany = system.systemClaims[i].claimCompany;
 
-		let divCont = document.getElementById("claimsConteiner");
-
+		
 		let articlePag = document.createElement('article');
 		articlePag.classList.add('ticketIn-boxItem-decoration');
 		divCont.appendChild(articlePag);
@@ -339,10 +343,10 @@ function claimsGeneretor() {
 		paragraph2.textContent = "Empresa: ";
 		divClaim.appendChild(paragraph2);
 
-		let selectElement = document.getElementById('company');
+		//let selectElement = document.getElementById('company');
 		let span2 = document.createElement('span');
 		span2.classList.add('company_style');
-		span2.textContent = selectElement.value;
+		span2.textContent = articleCompany.companyName;
 		paragraph2.appendChild(span2);
 
 		let paragraph3 = document.createElement('p');
@@ -367,10 +371,11 @@ function claimsGeneretor() {
 }
 
 function companyComb(){
-	let selectConteiner = document.getElementById('company');
 	
+	let selectConteiner = document.getElementById('company');
+	selectConteiner.innerHTML = "";
 	for (let i = 0; i< system.systemCompanies.length; i++){
-
+	
 		let companyOption = system.systemCompanies[i].companyName;
 		let optionComp = document.createElement('option');
 		optionComp.textContent = companyOption;
