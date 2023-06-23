@@ -343,7 +343,6 @@ function claimsGeneretor() {
 		paragraph2.textContent = "Empresa: ";
 		divClaim.appendChild(paragraph2);
 
-		//let selectElement = document.getElementById('company');
 		let span2 = document.createElement('span');
 		span2.classList.add('company_style');
 		span2.textContent = articleCompany.companyName;
