@@ -1,12 +1,16 @@
 onload=inicio;
-var system=new System();
-function inicio(){
 
+var system=new System();
+var i =0;	
+var contenidoOriginal
+
+
+function inicio(){
 //inicilizo los sections que si debo observar y los que no 
 	
 manageDefaultTabs();
 
-	
+
 
 
 
@@ -43,6 +47,9 @@ function goToViewTickets_nav() {
 }
 
 function goToStats_nav() {
+	if(i==0){contenidoOriginal = document.getElementById('statisticsSite').innerHTML; i=1;}
+	initialChargeStats();
+
 	goTo("statisticsSite");
 
 }
@@ -55,11 +62,75 @@ function goToAddCompany_nav() {
 //----------------------------------- MainPage function declaration
 
 function goToAddClaim_btn() {
-	goTo("ticket-box-decoration");
-	companyComb();
+	if(system.systemCompanies.length>0){
+		goTo("ticket-box-decoration");
+		companyComb();
+	}else{
+	alert('Debe ingresar una empresa, antes de ingresar un reclamo.');	
+	}
+	
 }
 
 //------------------------------------ Stats function declaration
+function resetApp(){
+	console.log('ORI'+contenidoOriginal);
+	document.getElementById('statisticsSite').innerHTML = contenidoOriginal;
+}
+
+
+function initialChargeStats(){
+	resetApp();
+
+	//setRowsFromCompanies();	
+	setButtonsFromCompaniesFistLeter();
+
+	let companiesCount = system.systemCompanies.length;
+	let avg = (getQtyFromCompany(0) / companiesCount);
+
+	let text = 'El promedio de las cantidades considerando todos los reclamos de todas las empresas es: ';
+
+	if(avg>0){
+		text += avg;
+	}else{
+		text = 'El promedio de las cantidades considerando todos los reclamos de todas las empresas es: 0';
+	}
+	
+	
+	let textoEtiquete = document.getElementById('generalInfo_allAvg');
+	textoEtiquete.textContent = text;
+
+	text = 'Total de empresas registradas: ';
+	text += companiesCount;
+	textoEtiquete = document.getElementById('generalInfo_qttyCompany');
+	textoEtiquete.textContent = text;
+
+
+	let companiesWOClaims = getCompaniesWOClaims()
+	let companiesWOClaimsLIST = document.getElementById('generalInfo_listWOClaim');
+	for(let i =0;i<companiesWOClaims.length;i++){
+		let li = document.createElement('li');
+		let description =companiesWOClaims[i].companyName + ' ('+companiesWOClaims[i].companyAddress+') Rubro: '+ companiesWOClaims[i].companyCategory  
+		li.textContent = description;
+		companiesWOClaimsLIST.appendChild(li);
+	}
+	
+
+	let maxQttyCategories = getQtyMaxCategory();
+	if(maxQttyCategories>0){
+		let listMaxQttyCategories = getCategoryMaxCategory(maxQttyCategories);
+		
+		let maxCategoriesList = document.getElementById('generalInfo_maxCategory');
+		for(let i=0;i<listMaxQttyCategories.length;i++){
+			let li = document.createElement('li');
+			let description = listMaxQttyCategories[i] + ': cantidad 4'
+			maxCategoriesList.appendChild(li);
+		}
+	}
+
+
+
+}
+
 function getQtyMaxCategory(){
 	let categories = getCategories();
 	let qtty =  0
@@ -87,13 +158,13 @@ function getCategoryMaxCategory(qty){
 	for(let i=0;i<categories.length;i++){
 		let qttyAux = 0
 		for(let j=0;j<system.systemClaims.length;j++){
-			let catFromCompany = getComanyCategory();
+			let catFromCompany = system.systemClaims[j].claimCompany.companyCategory//getComanyCategory();
 			if(categories[i]===catFromCompany){
 				qttyAux+=system.systemClaims[j].claimSubscribers;
 			}
 		}
 		if(qttyAux===qty){
-			maxCategories.puush(categories[i]);
+			maxCategories.push(categories[i]);
 		}	
 	} 
 	return maxCategories;
@@ -113,15 +184,19 @@ function getComanyCategory(companyParm){
 
 	
 function getCompaniesWOClaims(){
-	let companies = system.systemCompanies
+	let companies = system.systemCompanies.slice()
+	console.log('inicio'+companies);
+
 	for(let i=0;i<system.systemCompanies.length;i++){
 		for(let j=0;j<system.systemClaims.length;j++){
 			if(system.systemCompanies[i].comanyName===system.systemClaims[j].comanyName){
+				console.log('HOLA 1 '+companies);
 				companies.splice(i,1);
+ 				console.log('HOLA2'+companies);
 			}
 		}
 	}
-
+	console.log(companies);
 	return companies;
 }	
 
@@ -145,8 +220,8 @@ function areClaims(){
 
 function getQtyFromCompany(companyId){
 	let qtty =0;
-	for (let i=0;system.systemClaims.length;i++){
-		if(system.systemClaims[i].claimCompany.companyId=companyId){
+	for (let i=0;i<system.systemClaims.length;i++){
+		if(system.systemClaims[i].claimCompany.companyId==companyId || companyId==0){
 			qtty+=system.systemClaims[i].claimSubscribers;
 		}
 	}
@@ -189,8 +264,12 @@ function setRowsFromCompanies(companies){
 
 
 
-
+//generate the necessary buttons from the different letters
 function setButtonsFromCompaniesFistLeter(){
+
+
+
+
 	let divConteiner = document.getElementById('buttonRadio_div');
 	let buttonall = document.getElementById('allLetterSelected');
 	getCompaniesFistLeter();
@@ -198,28 +277,26 @@ function setButtonsFromCompaniesFistLeter(){
 		let button = document.createElement('button');
 		button.textContent = system.systemfirstLetterCompanies[i];
 		button.classList.add('buttonTable');	
-		button.addEventListener('click', function(){system.systemLetter=syste.systemfirstLetterCompanies[i];})
-		divconteiner.inertBefore(button,buttonall);
+		button.addEventListener('click', function(){system.systemLetter=system.systemfirstLetterCompanies[i];})
+		divConteiner.insertBefore(button,buttonall);
 	}
+
 		
 
 }
-
+//set the letters array
 function getCompaniesFistLeter(){
-	system.systemfirstLetterCompanies=[];
+	system.systemfirstLetterCompanies = [];
 	for(let i=0;i<system.systemCompanies.length;i++){
-		console.log('Esto es:'+system.systemCompanies[i].companyName.charAt(0));
 		let resAux=letterInCompaniesFirstLEtter(system.systemCompanies[i].companyName.charAt(0));
-		console.log('Esto2 es:'+resAux);
 		if(!resAux){
-			console.log('la letra es :'+letter);
-			let letter = system.systemCompanies[i].comanyName.charAt(0);
-			console.log('la letra es :'+letter);
-			system.systemfirstLetterCompanies.push();
+			let letter = system.systemCompanies[i].companyName.charAt(0);
+			system.systemfirstLetterCompanies.push(letter.toUpperCase());
 		}
 	}
 }
 
+//return true if the letter is in letter Array
 function letterInCompaniesFirstLEtter(letter){
 	let res = false;
 	for(let i =0;i<system.systemfirstLetterCompanies.length;i++){
@@ -234,9 +311,9 @@ function letterInCompaniesFirstLEtter(letter){
 //----------------------------------- AddComapny function declaration
 function addCompany_fn(){
 	form = document.getElementById('addCompany_fm');
-	let nameValid = validateCompanyName();
+	let nameInValid = validateCompanyName(document.getElementById("Nombre").value);
 
-	if(form.reportValidity()&& !nameValid){
+	if(form.reportValidity() && nameInValid){
 		let companyId = system.systemCompanies.length+1;
 		let companyName = document.getElementById("Nombre").value;
 		let companyAddress = document.getElementById("Direccion").value;
@@ -246,18 +323,18 @@ function addCompany_fn(){
 		system.addCompany(company);
 		form.reset();
 
-		console.log(system);
 	}else {
 		alert('Revise el nombre de la empresa, y recuerde que todos los campos son obligatorios');
 	}
 }
 
-function validateCompanyName(comanyName){
-	let res = false;
+//return true if the companyName is available
+function validateCompanyName(companyName){
+	let res = true;
 	
-	for(let i=0;i<system.systemClaims.length && !res;i++){
-		if (system.systemClaims[i]===comanyName) {
-			res=true;
+	for(let i=0;i<system.systemCompanies.length && res;i++){
+		if (system.systemCompanies[i].companyName===companyName) {
+			res=false;
 		}
 	}
 	return res;
@@ -304,6 +381,7 @@ function manageDefaultTabs() {
 	hide("ticketIn-box-decoration");
 	hide("statisticsSite");
 	hide("addCompany");
+
 };
 
 
