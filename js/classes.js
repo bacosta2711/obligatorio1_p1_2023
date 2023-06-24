@@ -26,9 +26,10 @@ class System{
     this.systemStudients = [];
     this.systemClaims = [];
     this.systemCompanies = [];
-    this.systemLetter='';
+    this.systemLetter='*';
     this.systemfirstLetterCompanies=[];
     this.systemClaimsFilter = [];
+    this.systemClaimsSorted = [];
   }
 
   addClaim(claim){

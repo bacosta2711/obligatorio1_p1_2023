@@ -2,7 +2,7 @@ onload=inicio;
 
 var system=new System();
 var i =0;	
-var contenidoOriginal
+var contenidoOriginal;
 
 
 function inicio(){
@@ -11,7 +11,7 @@ function inicio(){
 manageDefaultTabs();
 
 
-
+	document.getElementById("allLetterSelected").addEventListener("click", function(){console.log('status de brunos');});
 
 
 	//Eventos de NavBar
@@ -34,6 +34,14 @@ manageDefaultTabs();
 
   //Eventos de form agregar empresa
   document.getElementById("addCompany_btn").addEventListener("click", addCompany_fn);
+
+  //Eventos de estadisticas
+  document.getElementById("idRadio").addEventListener("change", reOrdenarCrec);
+  document.getElementById("idRadio").addEventListener("change", function(event){
+  	if (event.target.checked) {reOrdenarCrec();} 
+  	else {reOrdenarDec();}
+  });
+  
 }
 
 
@@ -50,10 +58,9 @@ function goToViewTickets_nav() {
 
 function goToStats_nav() {
 	if(i==0){contenidoOriginal = document.getElementById('statisticsSite').innerHTML; i=1;}
+	system.systemLetter='*';
 	initialChargeStats();
-
 	goTo("statisticsSite");
-
 }
 
 function goToAddCompany_nav() {
@@ -75,16 +82,51 @@ function goToAddClaim_btn() {
 
 //------------------------------------ Stats function declaration
 function resetApp(){
-	console.log('ORI'+contenidoOriginal);
 	document.getElementById('statisticsSite').innerHTML = contenidoOriginal;
+	let button = document.getElementById('allLetterSelected');
+	button.addEventListener('click', setLetterAll);
 }
 
+function reOrdenarCrec(){
+	system.systemClaimsSorted.sort(function(a, b) {
+		var nameA = a.companyName.toUpperCase();
+		var nameB = b.companyName.toUpperCase();
+		if (nameA < nameB) {
+		  return -1;
+		}
+		if (nameA > nameB) {
+		  return 1;
+		}
+		return 0;
+		}
+	);	
+	setRowsFromCompanies(system.systemClaimsSorted);
+}
+
+function reOrdenarDec(){
+	system.systemClaimsSorted.sort(function(a, b) {
+		var nameA = a.companyName.toUpperCase();
+	  	var nameB = b.companyName.toUpperCase();
+	  	if (nameA > nameB) {
+	    	return -1;
+	  	}
+	  	if (nameA < nameB) {
+	    	return 1;
+	  	}
+	  	return 0;
+		}
+	);
+	setRowsFromCompanies(system.systemClaimsSorted);
+}
 
 function initialChargeStats(){
 	resetApp();
+	setArrayData();
 
-	//setRowsFromCompanies();	
+	setRowsFromCompanies(system.systemClaimsSorted);	
 	setButtonsFromCompaniesFistLeter();
+
+	document.getElementById('companyT').textContent = 'Empresas que empiezan con '+system.systemLetter;
 
 	let companiesCount = system.systemCompanies.length;
 	let avg = (getQtyFromCompany(0) / companiesCount);
@@ -94,7 +136,7 @@ function initialChargeStats(){
 	if(avg>0){
 		text += avg;
 	}else{
-		text = 'El promedio de las cantidades considerando todos los reclamos de todas las empresas es: 0';
+		text = 'El promedio de las cantidades considerando todos los reclamos de todas las empresas es: No se puede calularel promedio. No hay reclamos';
 	}
 	
 	
@@ -102,36 +144,87 @@ function initialChargeStats(){
 	textoEtiquete.textContent = text;
 
 	text = 'Total de empresas registradas: ';
-	text += companiesCount;
+	if(companiesCount>0){
+		text += companiesCount;	
+	}else{
+		text+= ' No hay empresas registradas'
+	}
+	
 	textoEtiquete = document.getElementById('generalInfo_qttyCompany');
 	textoEtiquete.textContent = text;
 
 
 	let companiesWOClaims = getCompaniesWOClaims()
 	let companiesWOClaimsLIST = document.getElementById('generalInfo_listWOClaim');
-	for(let i =0;i<companiesWOClaims.length;i++){
+	if(companiesWOClaims.length>0){
+		for(let i =0;i<companiesWOClaims.length;i++){
+			let li = document.createElement('li');
+			let description =companiesWOClaims[i].companyName + ' ('+companiesWOClaims[i].companyAddress+') Rubro: '+ companiesWOClaims[i].companyCategory  
+			li.textContent = description;
+			companiesWOClaimsLIST.appendChild(li);
+		}
+	}else{
 		let li = document.createElement('li');
-		let description =companiesWOClaims[i].companyName + ' ('+companiesWOClaims[i].companyAddress+') Rubro: '+ companiesWOClaims[i].companyCategory  
+		let description = 'No hay empresas sin reclamos'  
 		li.textContent = description;
 		companiesWOClaimsLIST.appendChild(li);
 	}
+
 	
 
 	let maxQttyCategories = getQtyMaxCategory();
+	let maxCategoriesList = document.getElementById('generalInfo_maxCategory');
+
 	if(maxQttyCategories>0){
 		let listMaxQttyCategories = getCategoryMaxCategory(maxQttyCategories);
 		
-		let maxCategoriesList = document.getElementById('generalInfo_maxCategory');
 		for(let i=0;i<listMaxQttyCategories.length;i++){
+			
+			let description = listMaxQttyCategories[i] + ': cantidad '+maxQttyCategories;
+
 			let li = document.createElement('li');
-			let description = listMaxQttyCategories[i] + ': cantidad 4'
+			li.textContent = description;
+
 			maxCategoriesList.appendChild(li);
 		}
+	}else{
+		let description = 'No hay informacion para ninguna categoria'
+		let li = document.createElement('li');
+		li.textContent = description;
+
+		maxCategoriesList.appendChild(li);
 	}
-
-
-
 }
+
+
+
+function setArrayData(){
+	console.log('La letra es: '+system.systemLetter);
+	let systemClaimsSorted = [];
+	if (system.systemLetter === '*'){
+		console.log('Entro el if');
+		systemClaimsSorted = system.systemCompanies.slice();
+	}else{
+		console.log('Entro al eles');
+		for(let i=0; i<system.systemCompanies.length;i++){
+			if(system.systemCompanies[i].companyName.charAt(0).toUpperCase()==system.systemLetter && !companyInCol(system.systemCompanies[i].companyId)){
+				systemClaimsSorted.push(system.systemCompanies[i]);
+			}
+		}		 
+	}
+	console.log('El SDT es:'+systemClaimsSorted.slice())
+	system.systemClaimsSorted= systemClaimsSorted;
+}
+
+function companyInCol(companyId){
+	let res = false;
+	for(let i=0;i<system.systemClaimsSorted.length;i++){
+		if(companyId===system.systemClaimsSorted[i].companyId){
+			res = true;
+		}
+	}
+}
+
 
 function getQtyMaxCategory(){
 	let categories = getCategories();
@@ -142,7 +235,7 @@ function getQtyMaxCategory(){
 		let qttyAux = 0
 		for(let j=0;j<system.systemClaims.length;j++){
 			let catFromCompany = getComanyCategory();
-			if(categories[i]===catFromCompany){
+			if(categories[i]===system.systemClaims[j].claimCompany.companyCategory){
 				qttyAux+=system.systemClaims[j].claimSubscribers;
 			}
 		}
@@ -153,6 +246,12 @@ function getQtyMaxCategory(){
 	return qtty;
 }
 
+function setLetterAll(){
+	system.systemLetter='*';
+	initialChargeStats();
+}
+
+
 function getCategoryMaxCategory(qty){
 	let maxCategories = [];
 	let categories = getCategories();
@@ -160,8 +259,7 @@ function getCategoryMaxCategory(qty){
 	for(let i=0;i<categories.length;i++){
 		let qttyAux = 0
 		for(let j=0;j<system.systemClaims.length;j++){
-			let catFromCompany = system.systemClaims[j].claimCompany.companyCategory//getComanyCategory();
-			if(categories[i]===catFromCompany){
+			if(categories[i]===system.systemClaims[j].claimCompany.companyCategory){
 				qttyAux+=system.systemClaims[j].claimSubscribers;
 			}
 		}
@@ -192,9 +290,7 @@ function getCompaniesWOClaims(){
 	for(let i=0;i<system.systemCompanies.length;i++){
 		for(let j=0;j<system.systemClaims.length;j++){
 			if(system.systemCompanies[i].comanyName===system.systemClaims[j].comanyName){
-				console.log('HOLA 1 '+companies);
 				companies.splice(i,1);
- 				console.log('HOLA2'+companies);
 			}
 		}
 	}
@@ -227,7 +323,6 @@ function getQtyFromCompany(companyId){
 			qtty+=system.systemClaims[i].claimSubscribers;
 		}
 	}
-	console.log('la cantidad es:'+qtty);
 	return qtty;
 }
 
@@ -268,10 +363,6 @@ function setRowsFromCompanies(companies){
 
 //generate the necessary buttons from the different letters
 function setButtonsFromCompaniesFistLeter(){
-
-
-
-
 	let divConteiner = document.getElementById('buttonRadio_div');
 	let buttonall = document.getElementById('allLetterSelected');
 	getCompaniesFistLeter();
@@ -279,13 +370,11 @@ function setButtonsFromCompaniesFistLeter(){
 		let button = document.createElement('button');
 		button.textContent = system.systemfirstLetterCompanies[i];
 		button.classList.add('buttonTable');	
-		button.addEventListener('click', function(){system.systemLetter=system.systemfirstLetterCompanies[i];})
+		button.addEventListener('click', function(){system.systemLetter=system.systemfirstLetterCompanies[i];initialChargeStats();})
 		divConteiner.insertBefore(button,buttonall);
 	}
-
-		
-
 }
+
 //set the letters array
 function getCompaniesFistLeter(){
 	system.systemfirstLetterCompanies = [];
