@@ -21,11 +21,12 @@ manageDefaultTabs();
 	document.getElementById("goToAddCompany").addEventListener("click", goToAddCompany_nav);
 	// Evento de "Agregar formulario de reclamo"
 	document.getElementById("addClaim_Form").addEventListener("click", sendClaim);
-
+	document.getElementById('goBack').addEventListener('click',goToMain_nav);
+	document.getElementById("searchClaims").addEventListener("click",filterSearch);
 	//Eventos del Pagina principal
 	document.getElementById("claimAdd").addEventListener("click", goToAddClaim_btn);
 	//Evento "A mí también me pasó" 
-	document.getElementById("addClaim_Form").addEventListener("click", sendClaim);
+	
   
   //Eventos del Pagina principal
   document.getElementById("claimAdd").addEventListener("click", goToAddClaim_btn);
@@ -45,6 +46,7 @@ manageDefaultTabs();
 
 
 //------------------------------------NavBar funtion declaration
+
 function goToMain_nav() {
 	goTo("claimsManagement");
 }
@@ -479,23 +481,6 @@ function getSectionClases() {
 	return sectionClasess = ["claimsManagement", "ticket-box-decoration", "ticketIn-box-decoration", "statisticsSite", "addCompany"];
 }
 
-
-// Functions for add people to the experience
-
-/*function meTooOne() {
-	let counter = parseInt(document.getElementById("counterOne").innerHTML);
-	counter = counter + 1;
-	document.getElementById("counterOne").innerHTML = counter;
-
-}*/
-
-/*function meTooTwo() {
-	let counter = parseInt(document.getElementById("counterTwo").innerHTML);
-	counter = counter + 1;
-	document.getElementById("counterTwo").innerHTML = counter;
-}*/
-// Agregar formulario de reclamo 
-
 function sendClaim() {
 	let newClaim = new Claim();
 	newClaim.claimId = system.systemClaims.length + 1;
@@ -508,25 +493,84 @@ function sendClaim() {
 	formClaim.reset();
 }
 
-/*function sortUpward() {
-	system.systemCompanies.sort(function (a, b)
-	return a - b;
-	)
+function filterSearch(){
+	filterClaims();
+	claimsFilterGeneretor();
 }
-*/
-/*function sortFalling() {
-	system.systemCompanies.sort(function (a, b)
-	return b - a;
-	)
-}*/
-
-/* function companiesGridClaims(){
-
-	for (let i = 0; i < system.systemCompanies; i++){
-		let companyNameOption = system.systemCompanies[i].companyName;
+function filterClaims(){
+	system.systemClaimsFilter = [];
+	for (let i = 0; i <system.systemClaims.length; i++){
+		let searchValue = document.getElementById('search_action').value;
+		if(system.systemClaims[i].toString().toUpperCase().includes(searchValue.toUpperCase())){
+			system.systemClaimsFilter.push(system.systemClaims[i]);
+		}
 	}
 }
-*/
+
+function claimsFilterGeneretor(){
+	let divCont = document.getElementById("claimsConteiner");
+	divCont.innerHTML = "";
+	for (let i = system.systemClaimsFilter.length-1; i>=0; i--) {
+		let articleTitle = system.systemClaimsFilter[i].claimTitle;
+		let articleDescription = system.systemClaimsFilter[i].claimDescription;
+		let articlePerson = system.systemClaimsFilter[i].claimPerson;
+		let articleId = "RECLAMO No."+ (system.systemClaimsFilter[i].claimId);
+		let articleSubscribers = system.systemClaimsFilter[i].claimSubscribers;
+		let articleCompany = system.systemClaimsFilter[i].claimCompany;
+
+		
+		let articlePag = document.createElement('article');
+		articlePag.classList.add('ticketIn-boxItem-decoration');
+		divCont.appendChild(articlePag);
+
+		let titlePag = document.createElement('h3');
+		titlePag.textContent = articleId;
+		articlePag.appendChild(titlePag);
+	
+		let divClaim = document.createElement('div');
+		divClaim.classList.add('ticketIn-boxItemInfo-decoration');
+		articlePag.appendChild(divClaim);
+
+		let paragraph = document.createElement('p');
+		paragraph.textContent = articlePerson+": ";
+		divClaim.appendChild(paragraph);
+
+		let span = document.createElement('span');
+		span.classList.add('name_style');
+		span.textContent = articleTitle;
+		paragraph.appendChild(span);
+
+		let paragraph2 = document.createElement('p');
+		paragraph2.textContent = "Empresa: ";
+		divClaim.appendChild(paragraph2);
+
+		let span2 = document.createElement('span');
+		span2.classList.add('company_style');
+		span2.textContent = articleCompany.companyName;
+		paragraph2.appendChild(span2);
+
+		let paragraph3 = document.createElement('p');
+		paragraph3.textContent = articleDescription;
+		divClaim.appendChild(paragraph3);
+
+		let span3 = document.createElement('span');
+		divClaim.appendChild(span3);
+
+		let buttonOne = document.createElement('button');
+		buttonOne.setAttribute('type', 'button');
+		buttonOne.textContent = "A mí también me pasó!";
+		buttonOne.id = system.systemClaims[i].companyId;
+		span3.appendChild(buttonOne);
+
+		let counter = document.createElement('a');
+		counter.textContent = " Contador: ";
+		span3.appendChild(counter);
+		let span4 = document.createElement('span');
+		span4.textContent = articleSubscribers;
+		counter.appendChild(span4);
+	}
+}
+
 function claimsGeneretor() {
 	let divCont = document.getElementById("claimsConteiner");
 	divCont.innerHTML = "";
@@ -534,8 +578,8 @@ function claimsGeneretor() {
 		let articleTitle = system.systemClaims[i].claimTitle;
 		let articleDescription = system.systemClaims[i].claimDescription;
 		let articlePerson = system.systemClaims[i].claimPerson;
-		let articleId = "RECLAMO No."+parseInt(i+1);
-		let articleSubscribers = system.systemClaims[i].claimSubscribers;
+		let articleId = "RECLAMO No."+ (parseInt(system.systemClaims[i].claimId));
+		var articleSubscribers = system.systemClaims[i].claimSubscribers;
 		let articleCompany = system.systemClaims[i].claimCompany;
 
 		
@@ -564,7 +608,6 @@ function claimsGeneretor() {
 		paragraph2.textContent = "Empresa: ";
 		divClaim.appendChild(paragraph2);
 
-		//let selectElement = document.getElementById('company');
 		let span2 = document.createElement('span');
 		span2.classList.add('company_style');
 		span2.textContent = articleCompany.companyName;
@@ -580,16 +623,25 @@ function claimsGeneretor() {
 		let buttonOne = document.createElement('button');
 		buttonOne.setAttribute('type', 'button');
 		buttonOne.textContent = "A mí también me pasó!";
+		buttonOne.id = system.systemClaims[i].companyId;
 		span3.appendChild(buttonOne);
+		buttonOne.addEventListener('click',meToo);
 
 		let counter = document.createElement('a');
-		counter.textContent = "Contador";
-		
+		counter.textContent = " Contador: ";
+		span3.appendChild(counter);
+
 		let span4 = document.createElement('span');
 		span4.textContent = articleSubscribers;
 		counter.appendChild(span4);
 	}
 }
+function meToo() {
+	let articleSubscribersElement = this.parentNode.querySelector('span');
+	let currentSubscribers = parseInt(articleSubscribersElement.textContent);
+	articleSubscribersElement.textContent = currentSubscribers + 1;
+	system.systemClaims[i].claimSubscribers = currentSubscribers +1;
+  }
 
 function companyComb(){
 	

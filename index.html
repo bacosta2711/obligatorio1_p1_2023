@@ -25,7 +25,8 @@
 				<li id="goToAddCompany" class="nav-list__item"><a href="#addCompany">Agregar Empresa</a></li>
 				<li class="nav-list__item">
 					<input type="text" id="search_action">
-					<button><img alt="sear_icon" class="nav-decoration-button-img" src="./img/search_icon.png"></button>
+					<button><img for="search_action" id="searchClaims" alt="sear_icon" class="nav-decoration-button-img"
+							src="./img/search_icon.png"></button>
 				</li>
 			</ul>
 		</nav>
@@ -100,7 +101,11 @@
 
 				<tr>
 					<td></td>
-					<td><button id="addClaim_Form" type="button">Agregar</button></td>
+					<td colspan="2">
+						<button id="addClaim_Form" type="button">Agregar</button>
+						<button id="goBack" type="button">Volver</button>
+					</td>
+
 				</tr>
 			</table>
 		</form>
@@ -108,7 +113,7 @@
 	<!-- Section asociado a el sitio para ver reclamos ingresados-->
 
 	<section id="ticketIn-box-decoration" class="ticketIn-box-decoration">
-		
+
 
 		<h2>Reclamos Ingresados (los más recientes primeros)</h2><br>
 
@@ -150,7 +155,7 @@
 		
 		<h3>Empresas Seleccionadas</h3>
 
-		<div id='buttonRadio_div'class="buttonRadio">
+		<div id='buttonRadio_div' class="buttonRadio">
 
 			<button id='allLetterSelected' class="buttonTable" type='button'>*</button><br><br>
 			
@@ -162,14 +167,14 @@
 
 		<table class="tableOne">
 			<tbody id='tableOne'>
-			
+
 				<tr>
 					<th class="tableHeadOne"><B>Nombre</B></th>
 					<th class="tableHeadOne"><B>Direccion</B></th>
 					<th class="tableHeadTwo"><B>Rubro</B></th>
 					<th class="tableHeadTwo"><B>Cantidad</B></th>
 				</tr>
-	
+
 			</tbody>
 		</table>
 
