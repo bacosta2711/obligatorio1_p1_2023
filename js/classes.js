@@ -7,7 +7,9 @@ class Claim {
     this.claimDescription = claimDescription;
     this.claimSubscribers = 1;
   }
-
+  toString(){
+    return this.claimId +" "+ this.claimPerson +" "+ this.claimTitle +" "+ this.claimCompany +" "+this.claimDescription;
+  };
 }
 
 class Company{
@@ -26,6 +28,7 @@ class System{
     this.systemCompanies = [];
     this.systemLetter='';
     this.systemfirstLetterCompanies=[];
+    this.systemClaimsFilter = [];
   }
 
   addClaim(claim){

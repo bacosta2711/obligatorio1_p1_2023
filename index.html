@@ -25,7 +25,8 @@
 				<li id="goToAddCompany" class="nav-list__item"><a href="#addCompany">Agregar Empresa</a></li>
 				<li class="nav-list__item">
 					<input type="text" id="search_action">
-					<button><img alt="sear_icon" class="nav-decoration-button-img" src="./img/search_icon.png"></button>
+					<button><img for="search_action" id="searchClaims" alt="sear_icon" class="nav-decoration-button-img"
+							src="./img/search_icon.png"></button>
 				</li>
 			</ul>
 		</nav>
@@ -100,7 +101,11 @@
 
 				<tr>
 					<td></td>
-					<td><button id="addClaim_Form" type="button">Agregar</button></td>
+					<td colspan="2">
+						<button id="addClaim_Form" type="button">Agregar</button>
+						<button id="goBack" type="button">Volver</button>
+					</td>
+
 				</tr>
 			</table>
 		</form>
@@ -108,7 +113,7 @@
 	<!-- Section asociado a el sitio para ver reclamos ingresados-->
 
 	<section id="ticketIn-box-decoration" class="ticketIn-box-decoration">
-		
+
 
 		<h2>Reclamos Ingresados (los más recientes primeros)</h2><br>
 
@@ -150,12 +155,12 @@
 
 		<h3>Empresas Seleccionadas</h3>
 
-		<div id='buttonRadio_div'class="buttonRadio">
+		<div id='buttonRadio_div' class="buttonRadio">
 
 			<button class="buttonTable">A</button>
 			<button class="button_background_green">T</button>
 			<button id='allLetterSelected' class="buttonTable">*</button><br><br>
-			
+
 			<input type="radio" name="orden" checked id="idRadio"><label for="idRadio">Orden nombre creciente</label>
 			<input type="radio" name="orden" id="idRadio1"><label for="idRadio1">Orden nombre decreciente</label>
 		</div>
@@ -164,15 +169,15 @@
 
 		<table class="tableOne">
 			<tbody id='tableOne'>
-			
+
 				<tr>
 					<th class="tableHeadOne"><B>Nombre</B></th>
 					<th class="tableHeadOne"><B>Direccion</B></th>
 					<th class="tableHeadTwo"><B>Rubro</B></th>
 					<th class="tableHeadTwo"><B>Cantidad</B></th>
 				</tr>
-			
-				
+
+
 				<tr>
 					<td class="celdaOne">TodoViajes SA</td>
 					<td class="celdaOne">Av Italia 51515</td>
@@ -183,7 +188,8 @@
 		</table>
 
 		<h3> Información General</h3>
-		<p id='generalInfo_allAvg'>El promedio de las cantidades considerando todos los reclamos de todas las empresas es :4</p>
+		<p id='generalInfo_allAvg'>El promedio de las cantidades considerando todos los reclamos de todas las empresas
+			es :4</p>
 		<p id='generalInfo_qttyCompany'>Total de empresas registradas: 2</p>
 		<h3>Empresas sin reclamos</h3>
 		<ul id='generalInfo_listWOClaim'>
