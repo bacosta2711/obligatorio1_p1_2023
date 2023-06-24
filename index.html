@@ -126,7 +126,7 @@
 				</span>
 			</div>
 		</article>
-
+		
 		<article class="ticketIn-boxItem-decoration">
 			<h3>Reclamo No.1</h3>
 			<div class="ticketIn-boxItemInfo-decoration">
@@ -147,19 +147,17 @@
 	<!-- Section asociado a el sitio para ver estadisticas-->
 	<section id="statisticsSite" class="statisticsSite">
 		<h2>Estadísticas</h2>
-
+		
 		<h3>Empresas Seleccionadas</h3>
 
 		<div id='buttonRadio_div'class="buttonRadio">
 
-			<button class="buttonTable">A</button>
-			<button class="button_background_green">T</button>
-			<button id='allLetterSelected' class="buttonTable">*</button><br><br>
+			<button id='allLetterSelected' class="buttonTable" type='button'>*</button><br><br>
 			
 			<input type="radio" name="orden" checked id="idRadio"><label for="idRadio">Orden nombre creciente</label>
 			<input type="radio" name="orden" id="idRadio1"><label for="idRadio1">Orden nombre decreciente</label>
 		</div>
-		<p class="companyT">Empresas que empiezan con T</p>
+		<p id='companyT' class="companyT">Empresas que empiezan con X</p>
 
 
 		<table class="tableOne">
@@ -171,27 +169,20 @@
 					<th class="tableHeadTwo"><B>Rubro</B></th>
 					<th class="tableHeadTwo"><B>Cantidad</B></th>
 				</tr>
-			
-				
-				<tr>
-					<td class="celdaOne">TodoViajes SA</td>
-					<td class="celdaOne">Av Italia 51515</td>
-					<td class="celdaTwo">Viajes</td>
-					<td class="celdaTwo">4</td>
-				</tr>
+	
 			</tbody>
 		</table>
 
 		<h3> Información General</h3>
-		<p id='generalInfo_allAvg'>El promedio de las cantidades considerando todos los reclamos de todas las empresas es :4</p>
-		<p id='generalInfo_qttyCompany'>Total de empresas registradas: 2</p>
+		<p id='generalInfo_allAvg'>El promedio de las cantidades considerando todos los reclamos de todas las empresas es :</p>
+		<p id='generalInfo_qttyCompany'>Total de empresas registradas: </p>
 		<h3>Empresas sin reclamos</h3>
 		<ul id='generalInfo_listWOClaim'>
-			<li> Alfa (18 de Julio 12345) Rubro: Muebles</li>
+
 		</ul>
 		<h3>Rubros con máxima cantidad de reclamos</h3>
 		<ul id='generalInfo_maxCategory'>
-			<li>Viajes: cantidad 4</li>
+
 		</ul>
 
 	</section>
