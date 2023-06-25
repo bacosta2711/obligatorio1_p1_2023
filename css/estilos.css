@@ -57,7 +57,7 @@ Body {
     background-color: #BB9147;
     margin-left: -5px;
     margin-right: -10px;
-    margin-top: -20px;
+    
 }
 
 .ticket_dsc {
@@ -134,25 +134,27 @@ Body {
 .buttonCenter {
     border: #000000;
     text-align: center;
-    margin: 0 auto;
+    margin: 10 auto;
 }
 
 .button_background_green{
     background-color: limegreen;
     border : solid;  
     text-align: center;
-    margin: 0 auto;
+    margin: 3px ; 
 
 }
 
 .buttonTable {
     text-align: center;
-    margin: 0 auto;
+    margin: 3px ;
 }
+
 .buttonRadio {
     text-align: center;
     margin: 0 auto;
 }
+
 .companyT{
     text-align: center;
 }

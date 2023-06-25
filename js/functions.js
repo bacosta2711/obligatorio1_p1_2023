@@ -3,6 +3,7 @@ onload=inicio;
 var system=new System();
 var i =0;	
 var contenidoOriginal;
+var tablaVacia;
 
 
 function inicio(){
@@ -11,7 +12,7 @@ function inicio(){
 manageDefaultTabs();
 
 
-	document.getElementById("allLetterSelected").addEventListener("click", function(){console.log('status de brunos');});
+
 
 
 	//Eventos de NavBar
@@ -21,12 +22,11 @@ manageDefaultTabs();
 	document.getElementById("goToAddCompany").addEventListener("click", goToAddCompany_nav);
 	// Evento de "Agregar formulario de reclamo"
 	document.getElementById("addClaim_Form").addEventListener("click", sendClaim);
-	document.getElementById('goBack').addEventListener('click',goToMain_nav);
-	document.getElementById("searchClaims").addEventListener("click",filterSearch);
+
 	//Eventos del Pagina principal
 	document.getElementById("claimAdd").addEventListener("click", goToAddClaim_btn);
 	//Evento "A mí también me pasó" 
-	
+	document.getElementById("addClaim_Form").addEventListener("click", sendClaim);
   
   //Eventos del Pagina principal
   document.getElementById("claimAdd").addEventListener("click", goToAddClaim_btn);
@@ -36,17 +36,14 @@ manageDefaultTabs();
   document.getElementById("addCompany_btn").addEventListener("click", addCompany_fn);
 
   //Eventos de estadisticas
-  document.getElementById("idRadio").addEventListener("change", reOrdenarCrec);
-  document.getElementById("idRadio").addEventListener("change", function(event){
-  	if (event.target.checked) {reOrdenarCrec();} 
-  	else {reOrdenarDec();}
-  });
+
+ 
+  
   
 }
 
 
 //------------------------------------NavBar funtion declaration
-
 function goToMain_nav() {
 	goTo("claimsManagement");
 }
@@ -57,7 +54,7 @@ function goToViewTickets_nav() {
 }
 
 function goToStats_nav() {
-	if(i==0){contenidoOriginal = document.getElementById('statisticsSite').innerHTML; i=1;}
+	if(i==0){contenidoOriginal = document.getElementById('statisticsSite').innerHTML;tablaVacia =  document.getElementById('tableOne').innerHTML; i=1;}
 	system.systemLetter='*';
 	initialChargeStats();
 	goTo("statisticsSite");
@@ -85,6 +82,34 @@ function resetApp(){
 	document.getElementById('statisticsSite').innerHTML = contenidoOriginal;
 	let button = document.getElementById('allLetterSelected');
 	button.addEventListener('click', setLetterAll);
+	
+	button.classList = [];
+	if(system.systemLetter==='*'){
+			button.classList.add('.buttonTable.green');
+	}else{
+		button.classList.add('buttonTable');
+	}	
+
+	let radios = document.getElementsByName("orden");
+	radios.forEach(function(radioButton) {
+	  		 radioButton.addEventListener('change',order); 
+	});
+
+}
+
+function resetTable(){
+	document.getElementById('tableOne').innerHTML = tablaVacia;
+}
+
+function order(){
+	let radioAsc = document.getElementById('idRadio');
+	if(radioAsc.checked){
+		reOrdenarCrec();
+	}else{
+		reOrdenarDec();
+	}
+	resetTable();
+	setRowsFromCompanies(system.systemClaimsSorted);
 }
 
 function reOrdenarCrec(){
@@ -100,7 +125,6 @@ function reOrdenarCrec(){
 		return 0;
 		}
 	);	
-	setRowsFromCompanies(system.systemClaimsSorted);
 }
 
 function reOrdenarDec(){
@@ -116,7 +140,6 @@ function reOrdenarDec(){
 	  	return 0;
 		}
 	);
-	setRowsFromCompanies(system.systemClaimsSorted);
 }
 
 function initialChargeStats(){
@@ -125,13 +148,23 @@ function initialChargeStats(){
 
 	setRowsFromCompanies(system.systemClaimsSorted);	
 	setButtonsFromCompaniesFistLeter();
+	setButtonsColor();
+	let text = 'Empresas que empiezan con '
+	if(system.systemLetter==='*'){
+		text+='todas las letras';
+	}else{
+		text+=system.systemLetter;
+	}
 
-	document.getElementById('companyT').textContent = 'Empresas que empiezan con '+system.systemLetter;
+	document.getElementById('companyT').textContent = text;
 
-	let companiesCount = system.systemCompanies.length;
-	let avg = (getQtyFromCompany(0) / companiesCount);
-
-	let text = 'El promedio de las cantidades considerando todos los reclamos de todas las empresas es: ';
+	let companiesWOClaimsQtty = getCompaniesWOClaims()
+	let companiesCount = system.systemCompanies.length - companiesWOClaimsQtty.length ;
+	console.log('counWO:'+companiesWOClaimsQtty.length);
+	let avg = (getQtyFromCompany(0) / companiesCount );
+	console.log('el avg es '+companiesCount);
+	avg = avg.toFixed(2);
+	text = 'El promedio de las cantidades considerando todos los reclamos de todas las empresas es: ';
 
 	if(avg>0){
 		text += avg;
@@ -144,8 +177,8 @@ function initialChargeStats(){
 	textoEtiquete.textContent = text;
 
 	text = 'Total de empresas registradas: ';
-	if(companiesCount>0){
-		text += companiesCount;	
+	if(system.systemCompanies.length>0){
+		text += system.systemCompanies.length;	
 	}else{
 		text+= ' No hay empresas registradas'
 	}
@@ -196,23 +229,29 @@ function initialChargeStats(){
 	}
 }
 
-
+function setButtonsColor(){
+let botones = document.getElementsByName('buttonNames');
+for(let i=0;i<botones.length;i++)
+	if(botones[i].textContent===system.systemLetter){
+		botones[i].classList.remove('buttonTable');
+		botones[i].classList.add('button_background_green');
+	}else{
+		botones[i].classList.remove('button_background_green');
+		botones[i].classList.add('buttonTable');
+	}
+}
 
 function setArrayData(){
-	console.log('La letra es: '+system.systemLetter);
 	let systemClaimsSorted = [];
 	if (system.systemLetter === '*'){
-		console.log('Entro el if');
 		systemClaimsSorted = system.systemCompanies.slice();
 	}else{
-		console.log('Entro al eles');
 		for(let i=0; i<system.systemCompanies.length;i++){
 			if(system.systemCompanies[i].companyName.charAt(0).toUpperCase()==system.systemLetter && !companyInCol(system.systemCompanies[i].companyId)){
 				systemClaimsSorted.push(system.systemCompanies[i]);
 			}
 		}		 
 	}
-	console.log('El SDT es:'+systemClaimsSorted.slice())
 	system.systemClaimsSorted= systemClaimsSorted;
 }
 
@@ -284,37 +323,21 @@ function getComanyCategory(companyParm){
 
 	
 function getCompaniesWOClaims(){
-	let companies = system.systemCompanies.slice()
-	console.log('inicio'+companies);
+	let companies = [];
 
 	for(let i=0;i<system.systemCompanies.length;i++){
+		let isIn = false;
 		for(let j=0;j<system.systemClaims.length;j++){
-			if(system.systemCompanies[i].comanyName===system.systemClaims[j].comanyName){
-				companies.splice(i,1);
+			if(system.systemCompanies[i].companyId===system.systemClaims[j].claimCompany.companyId){
+				isIn =true;
 			}
 		}
+		if (!isIn){
+			companies.push(system.systemCompanies[i]);
+		}
 	}
-	console.log(companies);
 	return companies;
 }	
-
-function areTextOrGrid(){
-	if(areClaims()){
-		hide('')
-		show('')
-	}else{
-		hide('')
-		show('')
-	}
-}
-
-function areClaims(){
-	res = false;
-	if(system.systemClaims.length > 0){
-		res = true;
-	}
-	return res;
-}
 
 function getQtyFromCompany(companyId){
 	let qtty =0;
@@ -369,7 +392,8 @@ function setButtonsFromCompaniesFistLeter(){
 	for(let i =0;i<system.systemfirstLetterCompanies.length;i++){
 		let button = document.createElement('button');
 		button.textContent = system.systemfirstLetterCompanies[i];
-		button.classList.add('buttonTable');	
+		button.name = 'buttonNames'
+		//button.classList.add('buttonTable');
 		button.addEventListener('click', function(){system.systemLetter=system.systemfirstLetterCompanies[i];initialChargeStats();})
 		divConteiner.insertBefore(button,buttonall);
 	}
@@ -481,6 +505,23 @@ function getSectionClases() {
 	return sectionClasess = ["claimsManagement", "ticket-box-decoration", "ticketIn-box-decoration", "statisticsSite", "addCompany"];
 }
 
+
+// Functions for add people to the experience
+
+/*function meTooOne() {
+	let counter = parseInt(document.getElementById("counterOne").innerHTML);
+	counter = counter + 1;
+	document.getElementById("counterOne").innerHTML = counter;
+
+}*/	
+
+/*function meTooTwo() {
+	let counter = parseInt(document.getElementById("counterTwo").innerHTML);
+	counter = counter + 1;
+	document.getElementById("counterTwo").innerHTML = counter;
+}*/
+// Agregar formulario de reclamo 
+
 function sendClaim() {
 	let newClaim = new Claim();
 	newClaim.claimId = system.systemClaims.length + 1;
@@ -493,84 +534,25 @@ function sendClaim() {
 	formClaim.reset();
 }
 
-function filterSearch(){
-	filterClaims();
-	claimsFilterGeneretor();
+/*function sortUpward() {
+	system.systemCompanies.sort(function (a, b)
+	return a - b;
+	)
 }
-function filterClaims(){
-	system.systemClaimsFilter = [];
-	for (let i = 0; i <system.systemClaims.length; i++){
-		let searchValue = document.getElementById('search_action').value;
-		if(system.systemClaims[i].toString().toUpperCase().includes(searchValue.toUpperCase())){
-			system.systemClaimsFilter.push(system.systemClaims[i]);
-		}
+*/
+/*function sortFalling() {
+	system.systemCompanies.sort(function (a, b)
+	return b - a;
+	)
+}*/
+
+/* function companiesGridClaims(){
+
+	for (let i = 0; i < system.systemCompanies; i++){
+		let companyNameOption = system.systemCompanies[i].companyName;
 	}
 }
-
-function claimsFilterGeneretor(){
-	let divCont = document.getElementById("claimsConteiner");
-	divCont.innerHTML = "";
-	for (let i = system.systemClaimsFilter.length-1; i>=0; i--) {
-		let articleTitle = system.systemClaimsFilter[i].claimTitle;
-		let articleDescription = system.systemClaimsFilter[i].claimDescription;
-		let articlePerson = system.systemClaimsFilter[i].claimPerson;
-		let articleId = "RECLAMO No."+ (system.systemClaimsFilter[i].claimId);
-		let articleSubscribers = system.systemClaimsFilter[i].claimSubscribers;
-		let articleCompany = system.systemClaimsFilter[i].claimCompany;
-
-		
-		let articlePag = document.createElement('article');
-		articlePag.classList.add('ticketIn-boxItem-decoration');
-		divCont.appendChild(articlePag);
-
-		let titlePag = document.createElement('h3');
-		titlePag.textContent = articleId;
-		articlePag.appendChild(titlePag);
-	
-		let divClaim = document.createElement('div');
-		divClaim.classList.add('ticketIn-boxItemInfo-decoration');
-		articlePag.appendChild(divClaim);
-
-		let paragraph = document.createElement('p');
-		paragraph.textContent = articlePerson+": ";
-		divClaim.appendChild(paragraph);
-
-		let span = document.createElement('span');
-		span.classList.add('name_style');
-		span.textContent = articleTitle;
-		paragraph.appendChild(span);
-
-		let paragraph2 = document.createElement('p');
-		paragraph2.textContent = "Empresa: ";
-		divClaim.appendChild(paragraph2);
-
-		let span2 = document.createElement('span');
-		span2.classList.add('company_style');
-		span2.textContent = articleCompany.companyName;
-		paragraph2.appendChild(span2);
-
-		let paragraph3 = document.createElement('p');
-		paragraph3.textContent = articleDescription;
-		divClaim.appendChild(paragraph3);
-
-		let span3 = document.createElement('span');
-		divClaim.appendChild(span3);
-
-		let buttonOne = document.createElement('button');
-		buttonOne.setAttribute('type', 'button');
-		buttonOne.textContent = "A mí también me pasó!";
-		buttonOne.id = system.systemClaims[i].companyId;
-		span3.appendChild(buttonOne);
-
-		let counter = document.createElement('a');
-		counter.textContent = " Contador: ";
-		span3.appendChild(counter);
-		let span4 = document.createElement('span');
-		span4.textContent = articleSubscribers;
-		counter.appendChild(span4);
-	}
-}
-
+*/
 function claimsGeneretor() {
 	let divCont = document.getElementById("claimsConteiner");
 	divCont.innerHTML = "";
@@ -578,8 +560,8 @@ function claimsGeneretor() {
 		let articleTitle = system.systemClaims[i].claimTitle;
 		let articleDescription = system.systemClaims[i].claimDescription;
 		let articlePerson = system.systemClaims[i].claimPerson;
-		let articleId = "RECLAMO No."+ (parseInt(system.systemClaims[i].claimId));
-		var articleSubscribers = system.systemClaims[i].claimSubscribers;
+		let articleId = "RECLAMO No."+parseInt(i+1);
+		let articleSubscribers = system.systemClaims[i].claimSubscribers;
 		let articleCompany = system.systemClaims[i].claimCompany;
 
 		
@@ -608,6 +590,7 @@ function claimsGeneretor() {
 		paragraph2.textContent = "Empresa: ";
 		divClaim.appendChild(paragraph2);
 
+		//let selectElement = document.getElementById('company');
 		let span2 = document.createElement('span');
 		span2.classList.add('company_style');
 		span2.textContent = articleCompany.companyName;
@@ -623,25 +606,16 @@ function claimsGeneretor() {
 		let buttonOne = document.createElement('button');
 		buttonOne.setAttribute('type', 'button');
 		buttonOne.textContent = "A mí también me pasó!";
-		buttonOne.id = system.systemClaims[i].companyId;
 		span3.appendChild(buttonOne);
-		buttonOne.addEventListener('click',meToo);
 
 		let counter = document.createElement('a');
-		counter.textContent = " Contador: ";
-		span3.appendChild(counter);
-
+		counter.textContent = "Contador";
+		
 		let span4 = document.createElement('span');
 		span4.textContent = articleSubscribers;
 		counter.appendChild(span4);
 	}
 }
-function meToo() {
-	let articleSubscribersElement = this.parentNode.querySelector('span');
-	let currentSubscribers = parseInt(articleSubscribersElement.textContent);
-	articleSubscribersElement.textContent = currentSubscribers + 1;
-	system.systemClaims[i].claimSubscribers = currentSubscribers +1;
-  }
 
 function companyComb(){
 	
@@ -661,4 +635,3 @@ function companyComb(){
 function getCategories(){
 	return categories = ["Viajes","Restaurantes","Muebles","Autos","Servicios","General"]
 }
-

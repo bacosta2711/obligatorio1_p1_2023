@@ -25,7 +25,7 @@
 				<li id="goToAddCompany" class="nav-list__item"><a href="#addCompany">Agregar Empresa</a></li>
 				<li class="nav-list__item">
 					<input type="text" id="search_action">
-					<button><img for="search_action" id="searchClaims" alt="sear_icon" class="nav-decoration-button-img"
+					<button><img id="searchClaims" alt="sear_icon" class="nav-decoration-button-img"
 							src="./img/search_icon.png"></button>
 				</li>
 			</ul>
@@ -61,13 +61,12 @@
 				<tr>
 					<td><span>Nombre</span></td>
 					<td>
-						<label for="name">
+						<label for="claimantName">
 							<!-- Quizas aca en vez de poner la descrition del att conviene poner un span-->
-							<input type="text" required maxlength="30" id="claimantName" placeholder="Tu nombre..."><br>
+							<input  type="text" required maxlength="30" id="claimantName" placeholder="Tu nombre..."><br>
 						</label>
 					</td>
 				</tr>
-
 				<tr>
 					<td><span id="claimedCompany">Empresa</span></td>
 					<td>
@@ -77,7 +76,6 @@
 						</select>
 					</td>
 				</tr>
-
 				<tr>
 					<td><span>Reclamo</span></td>
 					<td>
@@ -87,7 +85,6 @@
 						</label>
 					</td>
 				</tr>
-
 				<tr>
 					<td></td>
 					<td>
@@ -97,16 +94,11 @@
 						</label>
 					</td>
 				</tr>
-
-
-				<tr>
-					<td></td>
+				<tr><!-- Se borro un <td></td> que daba error en vlaidacion w3e-->
 					<td colspan="2">
 						<button id="addClaim_Form" type="button">Agregar</button>
 						<button id="goBack" type="button">Volver</button>
-					</td>
-
-				</tr>
+					</td></tr>
 			</table>
 		</form>
 	</section>
@@ -157,10 +149,10 @@
 
 		<div id='buttonRadio_div' class="buttonRadio">
 
-			<button id='allLetterSelected' class="buttonTable" type='button'>*</button><br><br>
+			<button id='allLetterSelected' name='buttonNames' class="buttonTable" type='button'>*</button><br><br>
 			
-			<input type="radio" name="orden" checked id="idRadio"><label for="idRadio">Orden nombre creciente</label>
-			<input type="radio" name="orden" id="idRadio1"><label for="idRadio1">Orden nombre decreciente</label>
+			<input type="radio" name="orden" checked id="idRadio" value='ASC'><label for="idRadio">Orden nombre creciente</label>
+			<input type="radio" name="orden" id="idRadio1" value='DESC'><label for="idRadio1">Orden nombre decreciente</label>
 		</div>
 		<p id='companyT' class="companyT">Empresas que empiezan con X</p>
 
