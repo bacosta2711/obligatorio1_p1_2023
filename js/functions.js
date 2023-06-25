@@ -158,8 +158,11 @@ function initialChargeStats(){
 
 	document.getElementById('companyT').textContent = text;
 
-	let companiesCount = system.systemCompanies.length;
-	let avg = (getQtyFromCompany(0) / companiesCount);
+	let companiesWOClaimsQtty = getCompaniesWOClaims()
+	let companiesCount = system.systemCompanies.length - companiesWOClaimsQtty.length ;
+	console.log('counWO:'+companiesWOClaimsQtty.length);
+	let avg = (getQtyFromCompany(0) / companiesCount );
+	console.log('el avg es '+companiesCount);
 	avg = avg.toFixed(2);
 	text = 'El promedio de las cantidades considerando todos los reclamos de todas las empresas es: ';
 
@@ -174,8 +177,8 @@ function initialChargeStats(){
 	textoEtiquete.textContent = text;
 
 	text = 'Total de empresas registradas: ';
-	if(companiesCount>0){
-		text += companiesCount;	
+	if(system.systemCompanies.length>0){
+		text += system.systemCompanies.length;	
 	}else{
 		text+= ' No hay empresas registradas'
 	}
@@ -320,13 +323,17 @@ function getComanyCategory(companyParm){
 
 	
 function getCompaniesWOClaims(){
-	let companies = system.systemCompanies.slice()
+	let companies = [];
 
 	for(let i=0;i<system.systemCompanies.length;i++){
+		let isIn = false;
 		for(let j=0;j<system.systemClaims.length;j++){
-			if(system.systemCompanies[i].comanyName===system.systemClaims[j].comanyName){
-				companies.splice(i,1);
+			if(system.systemCompanies[i].companyId===system.systemClaims[j].claimCompany.companyId){
+				isIn =true;
 			}
+		}
+		if (!isIn){
+			companies.push(system.systemCompanies[i]);
 		}
 	}
 	return companies;
@@ -506,7 +513,7 @@ function getSectionClases() {
 	counter = counter + 1;
 	document.getElementById("counterOne").innerHTML = counter;
 
-}*/
+}*/	
 
 /*function meTooTwo() {
 	let counter = parseInt(document.getElementById("counterTwo").innerHTML);
