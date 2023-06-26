@@ -1,3 +1,5 @@
+/*<!-- Bruno Acosta_ 313080 -->
+<!-- Mateo Seijo_ 309095 -->*/
 onload = inicio;
 
 var system = new System();
@@ -57,7 +59,7 @@ function goToViewTickets_nav() {
 		let divCont = document.getElementById('claimsConteiner')
 		divCont.innerHTML = "";
 		let noInfo = document.createElement('h2');
-		noInfo.textContent = 'Aún no se ha ingresado ningún reclamo';
+		noInfo.textContent = 'Sin datos';
 		divCont.appendChild(noInfo);
 	}
 }
