@@ -1,3 +1,5 @@
+/*<!-- Bruno Acosta_ 313080 -->
+<!-- Mateo Seijo_ 309095 -->*/
 class Claim {
   constructor(claimId, claimPerson, claimTitle, claimDescription, claimCompany){
     this.claimId = claimId;

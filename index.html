@@ -1,3 +1,5 @@
+<!-- Bruno Acosta_ 313080 -->
+<!-- Mateo Seijo_ 309095 -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -63,7 +65,7 @@
 					<td>
 						<label for="claimantName">
 							<!-- Quizas aca en vez de poner la descrition del att conviene poner un span-->
-							<input  type="text" required maxlength="30" id="claimantName" placeholder="Tu nombre..."><br>
+							<input type="text" required maxlength="30" id="claimantName" placeholder="Tu nombre..."><br>
 						</label>
 					</td>
 				</tr>
@@ -95,10 +97,12 @@
 					</td>
 				</tr>
 				<tr><!-- Se borro un <td></td> que daba error en vlaidacion w3e-->
+
 					<td colspan="2">
 						<button id="addClaim_Form" type="button">Agregar</button>
 						<button id="goBack" type="button">Volver</button>
-					</td></tr>
+					</td>
+				</tr>
 			</table>
 		</form>
 	</section>
@@ -111,48 +115,22 @@
 
 		<div id="claimsConteiner"></div>
 
-		<article class="ticketIn-boxItem-decoration">
-			<h3>Reclamo No.2</h3>
-			<div class="ticketIn-boxItemInfo-decoration">
-				<p>Anonimo: <span class="name_style">Perdí la valija!</span></p>
-				<p>Empresa: <span class="company_style">TodoViajes S.A.</span></p>
-				<p>Viajé por su empresa y la valija no llegó.</p>
-				<span style="display: inline;">
-					<button id="meTooOne" type="submit"> A mí también me pasó!</button>
-					<a>Contador: <span id="counterOne">3</span></a>
-				</span>
-			</div>
-		</article>
-		
-		<article class="ticketIn-boxItem-decoration">
-			<h3>Reclamo No.1</h3>
-			<div class="ticketIn-boxItemInfo-decoration">
-				<p>Luis Perez: <span class="name_style">Pasaje muy caro</span></p>
-				<p>Empresa: <span class="company_style">TodoViajes S.A.</span></p>
-				<p>El pasaje a BsAs está muy caro, comparé con otras compañías y el precio de ustedes es más del
-					doble.
-					Además las otras empresas ofrecen catering.</p>
-				<span>
-					<button id="meTooTwo" type="submit"> A mi tambien me paso!</button>
-					<a>Contador: <span id="counterTwo">1</span></a>
-				</span>
-			</div>
-		</article>
-
 	</section>
 
 	<!-- Section asociado a el sitio para ver estadisticas-->
 	<section id="statisticsSite" class="statisticsSite">
 		<h2>Estadísticas</h2>
-		
+
 		<h3>Empresas Seleccionadas</h3>
 
 		<div id='buttonRadio_div' class="buttonRadio">
 
 			<button id='allLetterSelected' name='buttonNames' class="buttonTable" type='button'>*</button><br><br>
-			
-			<input type="radio" name="orden" checked id="idRadio" value='ASC'><label for="idRadio">Orden nombre creciente</label>
-			<input type="radio" name="orden" id="idRadio1" value='DESC'><label for="idRadio1">Orden nombre decreciente</label>
+
+			<input type="radio" name="orden" checked id="idRadio" value='ASC'><label for="idRadio">Orden nombre
+				creciente</label>
+			<input type="radio" name="orden" id="idRadio1" value='DESC'><label for="idRadio1">Orden nombre
+				decreciente</label>
 		</div>
 		<p id='companyT' class="companyT">Empresas que empiezan con X</p>
 
@@ -162,7 +140,7 @@
 
 				<tr>
 					<th class="tableHeadOne"><B>Nombre</B></th>
-					<th class="tableHeadOne"><B>Direccion</B></th>
+					<th class="tableHeadOne"><B>Dirección</B></th>
 					<th class="tableHeadTwo"><B>Rubro</B></th>
 					<th class="tableHeadTwo"><B>Cantidad</B></th>
 				</tr>
@@ -171,7 +149,8 @@
 		</table>
 
 		<h3> Información General</h3>
-		<p id='generalInfo_allAvg'>El promedio de las cantidades considerando todos los reclamos de todas las empresas es :</p>
+		<p id='generalInfo_allAvg'>El promedio de las cantidades considerando todos los reclamos de todas las empresas
+			es :</p>
 		<p id='generalInfo_qttyCompany'>Total de empresas registradas: </p>
 		<h3>Empresas sin reclamos</h3>
 		<ul id='generalInfo_listWOClaim'>
