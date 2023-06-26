@@ -34,16 +34,6 @@ function inicio() {
 
 	//Eventos de form agregar empresa
 	document.getElementById("addCompany_btn").addEventListener("click", addCompany_fn);
-
-	//Eventos de estadisticas
-	document.getElementById("idRadio").addEventListener("change", reOrdenarCrec);
-	document.getElementById("idRadio").addEventListener("change", function (event) {
-		if (event.target.checked) { reOrdenarCrec(); }
-		else { reOrdenarDec(); }
-	});
-
-
-
 }
 
 
