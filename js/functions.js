@@ -547,7 +547,7 @@ function filterSearch() {
 function noInfo() {
 	let divCont = document.getElementById('claimsConteiner')
 	divCont.innerHTML = "";
-	let noInfo = document.createElement('p');
+	let noInfo = document.createElement('h2');
 	noInfo.textContent = 'Sin datos';
 	divCont.appendChild(noInfo);
 }

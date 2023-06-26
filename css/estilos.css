@@ -162,7 +162,6 @@ Body {
 .tableOne {
     border: 2px solid;
     background-color: white;
-    display: flex;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
