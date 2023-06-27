@@ -450,7 +450,7 @@ function validateCompanyName(companyName) {
 	let res = true;
 
 	for (let i = 0; i < system.systemCompanies.length && res; i++) {
-		if (system.systemCompanies[i].companyName === companyName) {
+		if (system.systemCompanies[i].companyName.toUpperCase() === companyName.toUpperCase()) {
 			res = false;
 		}
 	}
